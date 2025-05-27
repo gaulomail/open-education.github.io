@@ -39,7 +39,7 @@ const Index = () => {
       duration: "4 weeks",
       rating: 4.9,
       students: "12,000+",
-      price: "$299"
+      price: "R2,999"
     },
     {
       title: "Machine Learning Expert",
@@ -47,7 +47,7 @@ const Index = () => {
       duration: "8 weeks",
       rating: 4.8,
       students: "8,500+",
-      price: "$599"
+      price: "R5,999"
     },
     {
       title: "AI Ethics & Governance",
@@ -55,7 +55,7 @@ const Index = () => {
       duration: "6 weeks",
       rating: 4.9,
       students: "5,200+",
-      price: "$399"
+      price: "R3,999"
     }
   ];
 
@@ -66,19 +66,24 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  AICerts
+              <div className="flex-shrink-0 flex items-center">
+                <img 
+                  src="/lovable-uploads/eed4e5a8-e7f7-478b-9406-48f4f446d66e.png" 
+                  alt="Open Education AI Logo" 
+                  className="h-8 w-8 mr-3"
+                />
+                <Link to="/" className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  Open Education AI
                 </Link>
               </div>
             </div>
             
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
-                <Link to="/" className="text-white hover:text-blue-400 transition-colors px-3 py-2 text-sm font-medium">Home</Link>
-                <Link to="/certifications" className="text-gray-300 hover:text-blue-400 transition-colors px-3 py-2 text-sm font-medium">Certifications</Link>
-                <Link to="/about" className="text-gray-300 hover:text-blue-400 transition-colors px-3 py-2 text-sm font-medium">About</Link>
-                <Link to="/contact" className="text-gray-300 hover:text-blue-400 transition-colors px-3 py-2 text-sm font-medium">Contact</Link>
+                <Link to="/" className="text-white hover:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Home</Link>
+                <Link to="/certifications" className="text-gray-300 hover:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Certifications</Link>
+                <Link to="/about" className="text-gray-300 hover:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">About</Link>
+                <Link to="/contact" className="text-gray-300 hover:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Contact</Link>
               </div>
             </div>
 
@@ -86,7 +91,7 @@ const Index = () => {
               <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-gray-800">
                 Sign In
               </Button>
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700">
+              <Button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700">
                 Get Started
               </Button>
             </div>
@@ -106,46 +111,45 @@ const Index = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-gray-900 border-t border-gray-800">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link to="/" className="block px-3 py-2 text-base font-medium text-white hover:text-blue-400">Home</Link>
-              <Link to="/certifications" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-blue-400">Certifications</Link>
-              <Link to="/about" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-blue-400">About</Link>
-              <Link to="/contact" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-blue-400">Contact</Link>
+              <Link to="/" className="block px-3 py-2 text-base font-medium text-white hover:text-purple-400">Home</Link>
+              <Link to="/certifications" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400">Certifications</Link>
+              <Link to="/about" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400">About</Link>
+              <Link to="/contact" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400">Contact</Link>
             </div>
             <div className="px-4 py-3 border-t border-gray-800">
               <Button variant="ghost" className="w-full mb-2 text-gray-300 hover:bg-gray-800">Sign In</Button>
-              <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white">Get Started</Button>
+              <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white">Get Started</Button>
             </div>
           </div>
         )}
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-24 pb-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <section className="pt-24 pb-20 bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Master AI with
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent block">
-                  Certified Excellence
+                Transform Education with
+                <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent block">
+                  AI-Powered Learning
                 </span>
               </h1>
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                Join thousands of professionals advancing their careers with industry-recognized AI certifications. 
-                Learn from experts, practice with real projects, and earn credentials that matter.
+                Open Education AI provides high-quality, accredited micro-learning programmes that leverage 
+                artificial intelligence to empower learners worldwide with practical skills and knowledge.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 text-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all">
+                <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 text-lg hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all">
                   Start Learning <ChevronRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button size="lg" variant="outline" className="px-8 py-4 text-lg border-2 border-gray-600 text-gray-300 hover:bg-gray-800 hover:border-gray-500">
+                <Button size="lg" variant="outline" className="px-8 py-4 text-lg border-2 border-purple-500 text-purple-400 hover:bg-purple-600 hover:text-white hover:border-purple-600">
                   View Certifications
                 </Button>
               </div>
             </div>
             <div className="relative">
-              {/* Diverse students learning AI */}
-              <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-8 text-white transform rotate-2 hover:rotate-0 transition-transform duration-300">
+              <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl p-8 text-white transform rotate-2 hover:rotate-0 transition-transform duration-300">
                 <div className="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
                   <img 
                     src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
@@ -185,8 +189,8 @@ const Index = () => {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center group">
-                <div className="bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl p-8 group-hover:shadow-xl group-hover:shadow-blue-500/20 transition-all duration-300">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                <div className="bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl p-8 group-hover:shadow-xl group-hover:shadow-purple-500/20 transition-all duration-300">
+                  <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
                     {stat.number}
                   </div>
                   <div className="text-gray-300 font-medium">{stat.label}</div>
@@ -197,12 +201,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Features Section with Diverse Imagery */}
+      {/* Features Section */}
       <section className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Why Choose Our Certifications?
+              Why Choose Open Education AI?
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Our AI certification program is designed by industry experts and recognized globally by leading tech companies.
@@ -210,8 +214,7 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 group border border-gray-700">
-                {/* Add diverse educational images for each feature */}
+              <div key={index} className="bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 group border border-gray-700">
                 <div className="mb-6">
                   <img 
                     src={index === 0 
@@ -224,8 +227,8 @@ const Index = () => {
                     className="w-full h-40 object-cover rounded-lg"
                   />
                 </div>
-                <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-4 w-fit mb-6 group-hover:scale-110 transition-transform">
-                  <div className="text-blue-400">
+                <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl p-4 w-fit mb-6 group-hover:scale-110 transition-transform">
+                  <div className="text-purple-400">
                     {feature.icon}
                   </div>
                 </div>
@@ -250,9 +253,9 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {certifications.map((cert, index) => (
-              <div key={index} className="bg-gray-900 border border-gray-700 rounded-2xl p-8 hover:shadow-xl hover:shadow-blue-500/20 transition-all hover:-translate-y-2 group">
+              <div key={index} className="bg-gray-900 border border-gray-700 rounded-2xl p-8 hover:shadow-xl hover:shadow-purple-500/20 transition-all hover:-translate-y-2 group">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="bg-blue-500/20 text-blue-400 text-sm font-medium px-3 py-1 rounded-full border border-blue-500/30">
+                  <span className="bg-purple-500/20 text-purple-400 text-sm font-medium px-3 py-1 rounded-full border border-purple-500/30">
                     {cert.level}
                   </span>
                   <div className="flex items-center text-yellow-400">
@@ -260,22 +263,22 @@ const Index = () => {
                     <span className="ml-1 text-sm font-medium text-gray-300">{cert.rating}</span>
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">
+                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-purple-400 transition-colors">
                   {cert.title}
                 </h3>
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center text-gray-300">
-                    <Award className="w-4 h-4 mr-2 text-blue-400" />
+                    <Award className="w-4 h-4 mr-2 text-purple-400" />
                     <span className="text-sm">{cert.duration}</span>
                   </div>
                   <div className="flex items-center text-gray-300">
-                    <Users className="w-4 h-4 mr-2 text-blue-400" />
+                    <Users className="w-4 h-4 mr-2 text-purple-400" />
                     <span className="text-sm">{cert.students} students</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-3xl font-bold text-white">{cert.price}</span>
-                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700">
+                  <Button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700">
                     Enroll Now <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
@@ -286,19 +289,19 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+      <section className="py-20 bg-gradient-to-r from-purple-600 to-pink-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">
             Ready to Advance Your AI Career?
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
             Join thousands of professionals who have transformed their careers with our AI certifications.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
+            <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
               Start Free Trial
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg">
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600 px-8 py-4 text-lg">
               View All Courses
             </Button>
           </div>
@@ -310,9 +313,16 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                AICerts
-              </span>
+              <div className="flex items-center mb-4">
+                <img 
+                  src="/lovable-uploads/eed4e5a8-e7f7-478b-9406-48f4f446d66e.png" 
+                  alt="Open Education AI Logo" 
+                  className="h-6 w-6 mr-2"
+                />
+                <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  Open Education AI
+                </span>
+              </div>
               <p className="mt-4 text-gray-400">
                 Leading the future of AI education with industry-recognized certifications.
               </p>
@@ -346,11 +356,11 @@ const Index = () => {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400">© 2024 AICerts. All rights reserved.</p>
+            <p className="text-gray-400">© 2024 Open Education AI. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Privacy</a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Terms</a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Cookies</a>
+              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Privacy</a>
+              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Terms</a>
+              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Cookies</a>
             </div>
           </div>
         </div>
