@@ -65,9 +65,9 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center animate-in fade-in slide-in-from-bottom-12 duration-700 ease-out">
             <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              Get in <span className="text-purple-600 font-bold">Touch</span>
+              Get in <span className="text-purple-600 font-semibold">Touch</span>
             </h1>
-            <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-700 font-normal mb-8 max-w-3xl mx-auto">
               Ready to start your AI learning journey? Contact our team for support, questions, or enrollment assistance.
             </p>
           </div>
@@ -94,14 +94,14 @@ const Contact = () => {
                       {info.link ? (
                         <a 
                           href={info.link} 
-                          className="text-gray-700 hover:text-purple-600 transition-colors"
+                          className="text-gray-700 font-normal hover:text-purple-600 transition-colors"
                           target={info.link.startsWith('http') ? '_blank' : undefined}
                           rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
                         >
                           {info.details}
                         </a>
                       ) : (
-                        <p className="text-gray-700">{info.details}</p>
+                        <p className="text-gray-700 font-normal">{info.details}</p>
                       )}
                     </div>
                   </div>
@@ -109,8 +109,8 @@ const Contact = () => {
               </div>
 
               <div className="mt-12">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Contact Us?</h3>
-                <ul className="space-y-3 text-gray-700">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Why Contact Us?</h3>
+                <ul className="space-y-3 text-gray-700 font-normal">
                   <li className="flex items-center">
                     <div className="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
                     Course enrollment assistance and guidance
@@ -140,7 +140,7 @@ const Contact = () => {
               <h2 className="text-3xl font-bold text-gray-900 mb-8">Send us a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <Label htmlFor="name" className="text-gray-800">Full Name</Label>
+                  <Label htmlFor="name" className="text-gray-800 font-medium">Full Name</Label>
                   <Input
                     id="name"
                     name="name"
@@ -154,7 +154,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="email" className="text-gray-800">Email Address</Label>
+                  <Label htmlFor="email" className="text-gray-800 font-medium">Email Address</Label>
                   <Input
                     id="email"
                     name="email"
@@ -168,7 +168,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="subject" className="text-gray-800">Subject</Label>
+                  <Label htmlFor="subject" className="text-gray-800 font-medium">Subject</Label>
                   <Input
                     id="subject"
                     name="subject"
@@ -182,7 +182,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="message" className="text-gray-800">Message</Label>
+                  <Label htmlFor="message" className="text-gray-800 font-medium">Message</Label>
                   <textarea
                     id="message"
                     name="message"
@@ -210,7 +210,7 @@ const Contact = () => {
       {/* Quick Actions Section */}
       <section className="py-16 bg-gray-50 animate-in fade-in slide-in-from-bottom-10 duration-700 ease-out delay-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Quick Actions</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Quick Actions</h2>
           <div className="grid md:grid-cols-3 gap-6">
             <a
               href="https://wa.me/27827813032"
@@ -220,7 +220,7 @@ const Contact = () => {
             >
               <div className="text-2xl mb-2">💬</div>
               <h3 className="font-semibold mb-2">WhatsApp Us</h3>
-              <p className="text-sm opacity-90">Get instant support via WhatsApp</p>
+              <p className="text-sm font-normal opacity-90">Get instant support via WhatsApp</p>
             </a>
             
             <a
@@ -229,7 +229,7 @@ const Contact = () => {
             >
               <div className="text-2xl mb-2">✉️</div>
               <h3 className="font-semibold mb-2">Email Us</h3>
-              <p className="text-sm opacity-90">Send us a detailed email inquiry</p>
+              <p className="text-sm font-normal opacity-90">Send us a detailed email inquiry</p>
             </a>
             
             <Link
@@ -238,7 +238,7 @@ const Contact = () => {
             >
               <div className="text-2xl mb-2">🎓</div>
               <h3 className="font-semibold mb-2">Browse Courses</h3>
-              <p className="text-sm opacity-90">Explore our programmes</p>
+              <p className="text-sm font-normal opacity-90">Explore our programmes</p>
             </Link>
           </div>
         </div>

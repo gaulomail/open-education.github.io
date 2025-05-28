@@ -44,9 +44,9 @@ const CorporateTraining = () => {
         <div className="absolute inset-0 bg-black/60"></div> {/* Overlay */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 animate-in fade-in slide-in-from-bottom-12 duration-700 ease-out">
           <h1 className="text-5xl font-bold text-white mb-6">
-            <span className="text-purple-300 font-bold">Corporate Training</span> Solutions
+            <span className="text-purple-300 font-semibold">Corporate Training</span> Solutions
           </h1>
-          <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-200 font-light mb-8 max-w-3xl mx-auto">
             Empower your workforce with our tailored AI and business development programmes.
           </p>
         </div>
@@ -57,7 +57,7 @@ const CorporateTraining = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Training Categories</h2>
-            <p className="text-xl text-gray-700">Comprehensive business training solutions for your team.</p>
+            <p className="text-xl text-gray-700 font-normal">Comprehensive business training solutions for your team.</p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
@@ -67,10 +67,10 @@ const CorporateTraining = () => {
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="flex items-center mb-4">
                     <Building className="w-7 h-7 text-purple-600 mr-3 flex-shrink-0" />
-                    <h3 className="text-2xl font-bold text-gray-900">{category.category}</h3>
+                    <h3 className="text-2xl font-semibold text-gray-900">{category.category}</h3>
                   </div>
                   
-                  <div className="grid gap-2 text-sm text-gray-700 flex-grow">
+                  <div className="grid gap-2 text-sm text-gray-700 font-normal flex-grow">
                     {category.courses.slice(0, 7).map((course, courseIndex) => ( // Show first 7 courses
                       <div key={courseIndex} className="flex items-start">
                         <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-1 flex-shrink-0" />
@@ -79,13 +79,13 @@ const CorporateTraining = () => {
                     ))}
                     {category.courses.length > 7 && (
                       <div className="flex items-start">
-                        <span className="text-gray-500 ml-7">... and more</span>
+                        <span className="text-gray-500 font-normal ml-7">... and more</span>
                       </div>
                     )}
                   </div>
                   <div className="mt-6 pt-4 border-t border-gray-200">
                     <Link to="/contact">
-                      <Button variant="outline" className="w-full border-purple-600 text-purple-600 hover:bg-purple-50 hover:text-purple-700">
+                      <Button variant="outline" className="w-full border-purple-600 text-purple-600 font-medium hover:bg-purple-50 hover:text-purple-700">
                         Enquire About {category.category}
                       </Button>
                     </Link>
@@ -102,7 +102,7 @@ const CorporateTraining = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">High Demand Corporate Courses</h2>
-            <p className="text-xl text-gray-700">Most popular training programmes to upskill your teams.</p>
+            <p className="text-xl text-gray-700 font-normal">Most popular training programmes to upskill your teams.</p>
           </div>
           
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">

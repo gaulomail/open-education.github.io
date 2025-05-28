@@ -38,25 +38,25 @@ const GettingStarted = () => {
               />
             </div>
             <h1 className="text-3xl font-bold text-purple-700 mb-2 text-center drop-shadow">Get Started with Open Education AI</h1>
-            <p className="text-purple-600 text-center mb-2">Secure your spot and unlock premium AI learning content. Start your transformation today.</p>
+            <p className="text-purple-600 font-normal text-center mb-2">Secure your spot and unlock premium AI learning content. Start your transformation today.</p>
           </div>
 
           {success ? (
             <div className="flex flex-col items-center py-12 relative z-10">
               <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
               <h2 className="text-2xl font-bold mb-2 text-purple-700">Welcome to Open Education AI!</h2>
-              <p className="text-purple-600 text-center mb-6">Thank you for joining us. You now have access to all premium content and programmes.</p>
+              <p className="text-purple-600 font-normal text-center mb-6">Thank you for joining us. You now have access to all premium content and programmes.</p>
               <Link to="/">
-                <Button className="bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 px-8 py-3 text-base">
+                <Button className="bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 px-8 py-3 text-base font-medium">
                   Explore Programmes
                 </Button>
               </Link>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-              <div>
-                <Label htmlFor="name" className="text-purple-700">Full Name</Label>
-                <Input 
+            <div>
+              <Label htmlFor="name" className="text-purple-700 font-medium">Full Name</Label>
+              <Input 
                   id="name" 
                   name="name" 
                   type="text" 
@@ -66,9 +66,9 @@ const GettingStarted = () => {
                 />
               </div>
               
-              <div>
-                <Label htmlFor="email" className="text-purple-700">Email Address</Label>
-                <Input 
+            <div>
+              <Label htmlFor="email" className="text-purple-700 font-medium">Email Address</Label>
+              <Input 
                   id="email" 
                   name="email" 
                   type="email" 
@@ -78,9 +78,9 @@ const GettingStarted = () => {
                 />
               </div>
               
-              <div>
-                <Label htmlFor="phone" className="text-purple-700">Phone Number</Label>
-                <Input 
+            <div>
+              <Label htmlFor="phone" className="text-purple-700 font-medium">Phone Number</Label>
+              <Input 
                   id="phone" 
                   name="phone" 
                   type="tel" 
@@ -90,9 +90,9 @@ const GettingStarted = () => {
                 />
               </div>
               
-              <div>
-                <Label htmlFor="course" className="text-purple-700">Interested Course</Label>
-                <select 
+            <div>
+              <Label htmlFor="course" className="text-purple-700 font-medium">Interested Course</Label>
+              <select 
                   id="course" 
                   name="course" 
                   required 
@@ -106,10 +106,10 @@ const GettingStarted = () => {
                 </select>
               </div>
 
-              <div className="text-sm text-purple-700 bg-purple-100/50 p-4 rounded-lg border border-purple-200/30">
-                <p className="mb-2">💡 <strong>What happens next?</strong></p>
-                <ul className="space-y-1 text-xs">
-                  <li>• Our team will contact you within 24 hours</li>
+            <div className="text-sm text-purple-700 font-normal bg-purple-100/50 p-4 rounded-lg border border-purple-200/30">
+              <p className="mb-2 font-medium">💡 <strong>What happens next?</strong></p>
+              <ul className="space-y-1 text-xs font-normal">
+                <li>• Our team will contact you within 24 hours</li>
                   <li>• We'll help you choose the perfect AI learning path</li>
                   <li>• Access to premium content and programmes</li>
                   <li>• 24/7 support throughout your learning journey</li>

@@ -126,9 +126,9 @@ const Programmes = () => {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 animate-in fade-in slide-in-from-bottom-12 duration-700 ease-out">
           <h1 className="text-5xl font-bold text-white mb-6">
-            AI <span className="text-purple-300 font-bold">Programmes & Training</span>
+            AI <span className="text-purple-300 font-semibold">Programmes & Training</span>
           </h1>
-          <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-200 font-light mb-8 max-w-3xl mx-auto">
             Comprehensive AI education programs designed by industry experts for the African market
           </p>
         </div>
@@ -143,7 +143,7 @@ const Programmes = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">AI Programmes</h2>
-            <p className="text-xl text-gray-700">Comprehensive AI training programmes</p>
+            <p className="text-xl text-gray-700 font-normal">Comprehensive AI training programmes</p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -161,13 +161,13 @@ const Programmes = () => {
                   </div>
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
                     {prog.title}
                   </h3>
                   
-                  <p className="text-gray-700 text-sm mb-4 flex-grow">{prog.description}</p>
+                  <p className="text-gray-700 font-normal text-sm mb-4 flex-grow">{prog.description}</p>
                   
-                  <div className="space-y-2 mb-5 text-sm">
+                  <div className="space-y-2 mb-5 text-sm font-normal">
                     <div className="flex items-center text-gray-600">
                       <Clock className="w-4 h-4 mr-2 text-purple-600 flex-shrink-0" />
                       <span>{prog.duration}</span>
@@ -188,7 +188,7 @@ const Programmes = () => {
                   
                   <div className="mt-auto flex items-center justify-between pt-4 border-t border-gray-200">
                     <span className="text-2xl font-bold text-gray-900">{prog.price}</span>
-                    <Button className="bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 px-6 py-2.5 text-sm">
+                    <Button className="bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 px-6 py-2.5 text-sm font-medium">
                       Enroll Now <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
@@ -205,7 +205,7 @@ const Programmes = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
             Ready to Start or Have Questions?
           </h2>
-          <p className="text-lg text-purple-200 mb-10 leading-relaxed">
+          <p className="text-lg text-purple-200 font-normal mb-10 leading-relaxed">
             Our team is here to help you choose the right programme and answer any queries. Don't hesitate to reach out!
           </p>
           <Link to="/contact">

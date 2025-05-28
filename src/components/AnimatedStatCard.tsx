@@ -70,7 +70,7 @@ const AnimatedStatCard: React.FC<AnimatedStatCardProps> = ({ targetValue, label,
       <div className="flex justify-center items-center mb-3 text-purple-300">
         {React.cloneElement(icon as React.ReactElement, { className: 'w-10 h-10' })}
       </div>
-      <div className="text-4xl sm:text-5xl font-extrabold text-white mb-2">
+      <div className="text-4xl sm:text-5xl font-bold text-white mb-2">
         {displayValue}
       </div>
       <div className="text-sm sm:text-base font-medium text-gray-200">{label}</div>

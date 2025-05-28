@@ -46,9 +46,9 @@ const Masterclasses = () => {
         <div className="absolute inset-0 bg-black/60"></div> {/* Overlay */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 animate-in fade-in slide-in-from-bottom-12 duration-700 ease-out">
           <h1 className="text-5xl font-bold text-white mb-6">
-            <span className="text-purple-300 font-bold">Masterclasses</span> for In-Depth Learning
+            <span className="text-purple-300 font-semibold">Masterclasses</span> for In-Depth Learning
           </h1>
-          <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-200 font-light mb-8 max-w-3xl mx-auto">
             Elevate your expertise with our specialized, intensive masterclass programmes.
           </p>
         </div>
@@ -59,7 +59,7 @@ const Masterclasses = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Explore Our Masterclasses</h2>
-            <p className="text-xl text-gray-700">Focused sessions to deepen your knowledge and skills.</p>
+            <p className="text-xl text-gray-700 font-normal">Focused sessions to deepen your knowledge and skills.</p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -67,12 +67,12 @@ const Masterclasses = () => {
               <div key={index} className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-purple-500/15 hover:-translate-y-1 transition-all duration-300 ease-out group flex flex-col animate-in fade-in zoom-in-95 duration-500 ease-out" style={{ animationDelay: `${index * 100}ms` }}>
                 <img src={masterclass.imageUrl} alt={masterclass.title} className="w-full h-56 object-cover" />
                 <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
                     {masterclass.title}
                   </h3>
-                  <p className="text-gray-700 text-sm mb-4 flex-grow">{masterclass.description}</p>
+                  <p className="text-gray-700 font-normal text-sm mb-4 flex-grow">{masterclass.description}</p>
                   
-                  <div className="space-y-2 mb-5 text-sm">
+                  <div className="space-y-2 mb-5 text-sm font-normal">
                     <div className="flex items-center text-gray-600">
                       <Clock className="w-4 h-4 mr-2 text-purple-600 flex-shrink-0" />
                       <span>{masterclass.duration}</span>
@@ -81,7 +81,7 @@ const Masterclasses = () => {
                   
                   <div className="mt-auto flex items-center justify-between pt-4 border-t border-gray-200">
                     <span className="text-2xl font-bold text-gray-900">{masterclass.price}</span>
-                    <Button className="bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 px-6 py-2.5 text-sm">
+                    <Button className="bg-purple-600 text-white font-medium rounded-lg shadow-md hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 px-6 py-2.5 text-sm">
                       Register Now <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
