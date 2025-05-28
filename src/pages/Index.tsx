@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { ChevronRight, Star, Users, Award, CheckCircle, ArrowRight, Globe, Shield, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -91,28 +90,26 @@ const Index = () => {
               </div>
             </div>
             <div className="relative flex items-center justify-center min-h-[400px]">
-              {/* Enhanced Logo Display */}
+              {/* Clean Logo Display */}
               <div className="relative">
-                {/* Multiple glow effects for better visibility */}
-                <div className="absolute inset-0 bg-purple-500/30 rounded-full blur-3xl scale-150"></div>
-                <div className="absolute inset-0 bg-pink-500/20 rounded-full blur-2xl scale-125"></div>
-                <div className="absolute inset-0 bg-white/5 rounded-full blur-xl scale-110"></div>
+                {/* Subtle glow effect */}
+                <div className="absolute inset-0 bg-purple-500/20 rounded-full blur-3xl scale-150"></div>
                 
-                {/* Logo container with enhanced visibility */}
-                <div className="relative z-10 bg-gradient-to-br from-white/25 to-white/15 backdrop-blur-xl rounded-3xl p-10 border-2 border-purple-400/40 shadow-2xl shadow-purple-500/30">
+                {/* Logo */}
+                <div className="relative z-10">
                   <img
                     src="/lovable-uploads/842cfd68-aa1d-47ac-a40b-51f239c78f49.png"
                     alt="Open Education AI"
-                    className="w-40 h-40 md:w-48 md:h-48 object-contain drop-shadow-2xl mx-auto animate-float"
+                    className="w-48 h-48 md:w-56 md:h-56 object-contain mx-auto animate-float"
                     loading="eager"
                   />
                 </div>
               </div>
               
-              {/* Glassmorphism Card Overlay */}
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 w-11/12 sm:w-[480px] md:w-[540px] min-h-[210px] bg-gray-900/70 backdrop-blur-2xl rounded-3xl border-2 border-purple-700/40 shadow-2xl p-12 flex flex-col items-center overflow-hidden">
-                <h3 className="text-4xl md:text-5xl font-black text-white mb-4 text-center drop-shadow-lg z-10 tracking-tight">Shape Tomorrow with AI</h3>
-                <p className="text-xl md:text-2xl text-purple-100 text-center mb-0 drop-shadow z-10 font-medium">Experience the future of learning—interactive, intelligent, and inspiring.</p>
+              {/* Modern Text Overlay */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 w-11/12 sm:w-[480px] md:w-[540px] text-center">
+                <h3 className="text-4xl md:text-5xl font-black text-white mb-4 drop-shadow-lg tracking-tight">Shape Tomorrow with AI</h3>
+                <p className="text-xl md:text-2xl text-purple-100 drop-shadow font-medium">Experience the future of learning—interactive, intelligent, and inspiring.</p>
               </div>
             </div>
           </div>

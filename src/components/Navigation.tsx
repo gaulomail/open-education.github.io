@@ -18,14 +18,12 @@ const Navigation = () => {
                 className="inline-flex items-center gap-4 hover:opacity-90 transition-opacity"
                 aria-label="Open Education AI Home"
               >
-                <div className="bg-white/20 backdrop-blur-sm rounded-xl p-3 border-2 border-purple-500/50 shadow-lg shadow-purple-500/20">
-                  <img 
-                    src="/lovable-uploads/842cfd68-aa1d-47ac-a40b-51f239c78f49.png" 
-                    alt="Open Education AI"
-                    className="h-14 w-14 drop-shadow-2xl"
-                    loading="eager"
-                  />
-                </div>
+                <img 
+                  src="/lovable-uploads/842cfd68-aa1d-47ac-a40b-51f239c78f49.png" 
+                  alt="Open Education AI"
+                  className="h-12 w-12 object-contain"
+                  loading="eager"
+                />
                 <span className="text-xl font-bold text-white hidden sm:block tracking-tight">
                   Open Education AI
                 </span>
