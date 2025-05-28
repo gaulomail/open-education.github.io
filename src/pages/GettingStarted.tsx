@@ -1,8 +1,10 @@
+
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const GettingStarted = () => {
   const [success, setSuccess] = useState(false);
@@ -16,46 +18,110 @@ const GettingStarted = () => {
   return (
     <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-lg bg-gray-900/80 backdrop-blur-xl shadow-2xl rounded-3xl p-10 border border-purple-800/30 relative overflow-hidden">
+        {/* Back button */}
+        <Link 
+          to="/" 
+          className="absolute top-6 left-6 text-purple-300 hover:text-purple-200 transition-colors z-20"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </Link>
+
         {/* Glassy overlay */}
         <div className="absolute inset-0 rounded-3xl pointer-events-none" style={{background:'radial-gradient(circle at 70% 30%, rgba(160,132,232,0.08) 0%, rgba(20,20,40,0.18) 100%)'}} />
+        
         <div className="flex flex-col items-center mb-8 relative z-10">
-          <div className="bg-white rounded-full p-2 shadow-md mb-4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard" className="h-10 w-16 object-contain" />
+          <div className="bg-white rounded-full p-3 shadow-md mb-4">
+            <img 
+              src="/lovable-uploads/22c97659-45cd-46b2-afd5-d63b15cb5554.png" 
+              alt="Open Education AI" 
+              className="h-12 w-12 object-contain" 
+            />
           </div>
-          <h1 className="text-3xl font-bold text-purple-100 mb-2 text-center drop-shadow">Get Started with Your AI Certification</h1>
-          <p className="text-purple-300 text-center mb-2">Secure your spot and unlock premium AI learning content. Pay easily with Mastercard.</p>
+          <h1 className="text-3xl font-bold text-purple-100 mb-2 text-center drop-shadow">Get Started with Open Education AI</h1>
+          <p className="text-purple-300 text-center mb-2">Secure your spot and unlock premium AI learning content. Start your transformation today.</p>
         </div>
+
         {success ? (
           <div className="flex flex-col items-center py-12 relative z-10">
             <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
-            <h2 className="text-2xl font-bold mb-2 text-purple-100">Payment Successful!</h2>
-            <p className="text-purple-300 text-center">Thank you for your payment. You now have access to all premium content and certifications.</p>
+            <h2 className="text-2xl font-bold mb-2 text-purple-100">Welcome to Open Education AI!</h2>
+            <p className="text-purple-300 text-center mb-6">Thank you for joining us. You now have access to all premium content and certifications.</p>
+            <Link to="/">
+              <Button className="bg-purple-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-purple-700 transition-colors">
+                Explore Courses
+              </Button>
+            </Link>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
             <div>
               <Label htmlFor="name" className="text-purple-200">Full Name</Label>
-              <Input id="name" name="name" type="text" required placeholder="Enter your full name" className="mt-2 bg-gray-800/80 text-white border border-purple-800/30 placeholder-gray-400" />
+              <Input 
+                id="name" 
+                name="name" 
+                type="text" 
+                required 
+                placeholder="Enter your full name" 
+                className="mt-2 bg-gray-800/80 text-white border border-purple-800/30 placeholder-gray-400 focus:border-purple-500" 
+              />
             </div>
+            
             <div>
               <Label htmlFor="email" className="text-purple-200">Email Address</Label>
-              <Input id="email" name="email" type="email" required placeholder="Enter your email" className="mt-2 bg-gray-800/80 text-white border border-purple-800/30 placeholder-gray-400" />
+              <Input 
+                id="email" 
+                name="email" 
+                type="email" 
+                required 
+                placeholder="Enter your email" 
+                className="mt-2 bg-gray-800/80 text-white border border-purple-800/30 placeholder-gray-400 focus:border-purple-500" 
+              />
             </div>
+            
             <div>
-              <Label htmlFor="card" className="text-purple-200">Card Number</Label>
-              <Input id="card" name="card" type="text" required maxLength={19} placeholder="1234 5678 9012 3456" className="mt-2 bg-gray-800/80 text-white border border-purple-800/30 placeholder-gray-400" />
+              <Label htmlFor="phone" className="text-purple-200">Phone Number</Label>
+              <Input 
+                id="phone" 
+                name="phone" 
+                type="tel" 
+                required 
+                placeholder="+27 XX XXX XXXX" 
+                className="mt-2 bg-gray-800/80 text-white border border-purple-800/30 placeholder-gray-400 focus:border-purple-500" 
+              />
             </div>
-            <div className="flex gap-4">
-              <div className="flex-1">
-                <Label htmlFor="expiry" className="text-purple-200">Expiry</Label>
-                <Input id="expiry" name="expiry" type="text" required maxLength={5} placeholder="MM/YY" className="mt-2 bg-gray-800/80 text-white border border-purple-800/30 placeholder-gray-400" />
-              </div>
-              <div className="flex-1">
-                <Label htmlFor="cvc" className="text-purple-200">CVC</Label>
-                <Input id="cvc" name="cvc" type="text" required maxLength={4} placeholder="CVC" className="mt-2 bg-gray-800/80 text-white border border-purple-800/30 placeholder-gray-400" />
-              </div>
+            
+            <div>
+              <Label htmlFor="course" className="text-purple-200">Interested Course</Label>
+              <select 
+                id="course" 
+                name="course" 
+                required 
+                className="mt-2 w-full px-3 py-2 bg-gray-800/80 text-white border border-purple-800/30 rounded-md focus:border-purple-500 focus:outline-none"
+              >
+                <option value="">Select a course</option>
+                <option value="ai-fundamentals">AI Fundamentals - R2,999</option>
+                <option value="machine-learning">Machine Learning Expert - R5,999</option>
+                <option value="ai-ethics">AI Ethics & Governance - R3,999</option>
+                <option value="corporate-training">Corporate Training Solutions</option>
+              </select>
             </div>
-            <Button type="submit" className="w-full bg-purple-700/90 text-white font-bold py-3 rounded-xl shadow-lg hover:bg-purple-800 hover:shadow-purple-700/30 hover:ring-2 hover:ring-purple-400 transition-all text-lg mt-2">Pay Now</Button>
+
+            <div className="text-sm text-purple-300 bg-purple-900/20 p-4 rounded-lg border border-purple-800/30">
+              <p className="mb-2">💡 <strong>What happens next?</strong></p>
+              <ul className="space-y-1 text-xs">
+                <li>• Our team will contact you within 24 hours</li>
+                <li>• We'll help you choose the perfect AI learning path</li>
+                <li>• Access to premium content and certifications</li>
+                <li>• 24/7 support throughout your learning journey</li>
+              </ul>
+            </div>
+
+            <Button 
+              type="submit" 
+              className="w-full bg-purple-700/90 text-white font-bold py-3 rounded-xl shadow-lg hover:bg-purple-800 hover:shadow-purple-700/30 hover:ring-2 hover:ring-purple-400 transition-all text-lg mt-4"
+            >
+              Start My AI Journey
+            </Button>
           </form>
         )}
       </div>
@@ -63,4 +129,4 @@ const GettingStarted = () => {
   );
 };
 
-export default GettingStarted; 
+export default GettingStarted;

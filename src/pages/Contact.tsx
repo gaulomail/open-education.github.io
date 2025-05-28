@@ -1,12 +1,14 @@
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, Send, Menu, X } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 
 const Contact = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -56,49 +58,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-gray-900">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <img 
-                src="/lovable-uploads/eed4e5a8-e7f7-478b-9406-48f4f446d66e.png" 
-                alt="Open Education AI Logo" 
-                className="h-8 w-8 mr-3"
-              />
-              <Link to="/" className="text-xl font-bold text-purple-300">
-                Open Education AI
-              </Link>
-            </div>
-            <div className="hidden md:flex items-baseline space-x-8">
-              <Link to="/" className="text-white hover:text-purple-400 focus:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Home</Link>
-              <Link to="/certifications" className="text-white hover:text-purple-400 focus:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Certifications</Link>
-              <Link to="/about" className="text-white hover:text-purple-400 focus:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">About</Link>
-              <Link to="/contact" className="text-white hover:text-purple-400 focus:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Contact</Link>
-            </div>
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-300 hover:text-white focus:outline-none"
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile menu */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-gray-900 border-t border-gray-800">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link to="/" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400">Home</Link>
-              <Link to="/certifications" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400">Certifications</Link>
-              <Link to="/about" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400">About</Link>
-              <Link to="/contact" className="block px-3 py-2 text-base font-medium text-white hover:text-purple-400">Contact</Link>
-            </div>
-          </div>
-        )}
-      </nav>
+      <Navigation />
 
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900">
@@ -135,6 +95,8 @@ const Contact = () => {
                         <a 
                           href={info.link} 
                           className="text-gray-300 hover:text-purple-400 transition-colors"
+                          target={info.link.startsWith('http') ? '_blank' : undefined}
+                          rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
                         >
                           {info.details}
                         </a>
@@ -151,23 +113,23 @@ const Contact = () => {
                 <ul className="space-y-3 text-gray-300">
                   <li className="flex items-center">
                     <div className="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
-                    Course enrollment assistance
+                    Course enrollment assistance and guidance
                   </li>
                   <li className="flex items-center">
                     <div className="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
-                    Technical support and guidance
+                    Technical support and learning resources
                   </li>
                   <li className="flex items-center">
                     <div className="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
-                    Corporate training solutions
+                    Corporate training solutions and partnerships
                   </li>
                   <li className="flex items-center">
                     <div className="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
-                    Partnership opportunities
+                    Certification verification and queries
                   </li>
                   <li className="flex items-center">
                     <div className="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
-                    General inquiries about our programs
+                    General inquiries about our AI programs
                   </li>
                 </ul>
               </div>
@@ -235,7 +197,7 @@ const Contact = () => {
 
                 <Button 
                   type="submit" 
-                  className="w-full bg-gray-900/70 text-white font-semibold shadow-lg border border-purple-700/40 hover:bg-gray-800/80 hover:shadow-purple-700/30 transition-all py-3"
+                  className="w-full bg-purple-600 text-white font-semibold shadow-lg hover:bg-purple-700 hover:shadow-purple-700/30 transition-all py-3"
                 >
                   Send Message <Send className="ml-2 h-4 w-4" />
                 </Button>
@@ -254,7 +216,7 @@ const Contact = () => {
               href="https://wa.me/27827813032"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-600 hover:bg-green-700 text-white p-6 rounded-xl transition-colors"
+              className="bg-green-600 hover:bg-green-700 text-white p-6 rounded-xl transition-colors group hover:scale-105 duration-200"
             >
               <div className="text-2xl mb-2">💬</div>
               <h3 className="font-semibold mb-2">WhatsApp Us</h3>
@@ -263,7 +225,7 @@ const Contact = () => {
             
             <a
               href="mailto:hello@openedai.com"
-              className="bg-purple-600 hover:bg-purple-700 text-white p-6 rounded-xl transition-colors"
+              className="bg-purple-600 hover:bg-purple-700 text-white p-6 rounded-xl transition-colors group hover:scale-105 duration-200"
             >
               <div className="text-2xl mb-2">✉️</div>
               <h3 className="font-semibold mb-2">Email Us</h3>
@@ -272,7 +234,7 @@ const Contact = () => {
             
             <Link
               to="/certifications"
-              className="bg-pink-600 hover:bg-pink-700 text-white p-6 rounded-xl transition-colors"
+              className="bg-pink-600 hover:bg-pink-700 text-white p-6 rounded-xl transition-colors group hover:scale-105 duration-200"
             >
               <div className="text-2xl mb-2">🎓</div>
               <h3 className="font-semibold mb-2">Browse Courses</h3>
@@ -281,6 +243,8 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
