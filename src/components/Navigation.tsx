@@ -20,7 +20,7 @@ const Navigation = () => {
               >
                 <div className="bg-white/20 backdrop-blur-sm rounded-xl p-3 border-2 border-purple-500/50 shadow-lg shadow-purple-500/20">
                   <img 
-                    src="/lovable-uploads/22c97659-45cd-46b2-afd5-d63b15cb5554.png" 
+                    src="/lovable-uploads/842cfd68-aa1d-47ac-a40b-51f239c78f49.png" 
                     alt="Open Education AI"
                     className="h-14 w-14 drop-shadow-2xl"
                     loading="eager"

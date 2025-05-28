@@ -10,7 +10,7 @@ const Footer = () => {
             <div className="flex items-center mb-4">
               <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 border border-purple-500/40 mr-3 shadow-lg shadow-purple-500/20">
                 <img 
-                  src="/lovable-uploads/22c97659-45cd-46b2-afd5-d63b15cb5554.png" 
+                  src="/lovable-uploads/842cfd68-aa1d-47ac-a40b-51f239c78f49.png" 
                   alt="Open Education AI Logo" 
                   className="h-10 w-10 drop-shadow-lg"
                 />

@@ -101,7 +101,7 @@ const Index = () => {
                 {/* Logo container with enhanced visibility */}
                 <div className="relative z-10 bg-gradient-to-br from-white/25 to-white/15 backdrop-blur-xl rounded-3xl p-10 border-2 border-purple-400/40 shadow-2xl shadow-purple-500/30">
                   <img
-                    src="/lovable-uploads/22c97659-45cd-46b2-afd5-d63b15cb5554.png"
+                    src="/lovable-uploads/842cfd68-aa1d-47ac-a40b-51f239c78f49.png"
                     alt="Open Education AI"
                     className="w-40 h-40 md:w-48 md:h-48 object-contain drop-shadow-2xl mx-auto animate-float"
                     loading="eager"
