@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 
 export default {
-	darkMode: ["class"],
 	content: [
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
@@ -17,6 +16,9 @@ export default {
 				'2xl': '1400px'
 			}
 		},
+    fontFamily: {
+      sans: ['Poppins', 'sans-serif'],
+    },
 		extend: {
 			colors: {
 				border: 'hsl(var(--border))',
