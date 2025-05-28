@@ -1,7 +1,7 @@
-
 import { Link } from 'react-router-dom';
 import { Users, Award, Globe, Target, CheckCircle, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 
 const About = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,10 +63,10 @@ const About = () => {
               </Link>
             </div>
             <div className="hidden md:flex items-baseline space-x-8">
-              <Link to="/" className="text-gray-300 hover:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Home</Link>
-              <Link to="/certifications" className="text-gray-300 hover:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Certifications</Link>
-              <Link to="/about" className="text-white hover:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">About</Link>
-              <Link to="/contact" className="text-gray-300 hover:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Contact</Link>
+              <Link to="/" className="text-white hover:text-purple-400 focus:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Home</Link>
+              <Link to="/certifications" className="text-white hover:text-purple-400 focus:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Certifications</Link>
+              <Link to="/about" className="text-white hover:text-purple-400 focus:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">About</Link>
+              <Link to="/contact" className="text-white hover:text-purple-400 focus:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Contact</Link>
             </div>
             <div className="md:hidden">
               <button

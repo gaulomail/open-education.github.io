@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Send, Menu, X } from 'lucide-react';
@@ -67,15 +66,15 @@ const Contact = () => {
                 alt="Open Education AI Logo" 
                 className="h-8 w-8 mr-3"
               />
-              <Link to="/" className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <Link to="/" className="text-xl font-bold text-purple-300">
                 Open Education AI
               </Link>
             </div>
             <div className="hidden md:flex items-baseline space-x-8">
-              <Link to="/" className="text-gray-300 hover:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Home</Link>
-              <Link to="/certifications" className="text-gray-300 hover:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Certifications</Link>
-              <Link to="/about" className="text-gray-300 hover:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">About</Link>
-              <Link to="/contact" className="text-white hover:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Contact</Link>
+              <Link to="/" className="text-white hover:text-purple-400 focus:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Home</Link>
+              <Link to="/certifications" className="text-white hover:text-purple-400 focus:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Certifications</Link>
+              <Link to="/about" className="text-white hover:text-purple-400 focus:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">About</Link>
+              <Link to="/contact" className="text-white hover:text-purple-400 focus:text-purple-400 transition-colors px-3 py-2 text-sm font-medium">Contact</Link>
             </div>
             <div className="md:hidden">
               <button
@@ -106,7 +105,7 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl font-bold text-white mb-6">
-              Get in <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Touch</span>
+              Get in <span className="text-purple-200 font-bold">Touch</span>
             </h1>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
               Ready to start your AI learning journey? Contact our team for support, questions, or enrollment assistance.
@@ -125,7 +124,7 @@ const Contact = () => {
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex items-start space-x-4 p-6 bg-gray-900 rounded-xl border border-gray-700 hover:border-purple-500/50 transition-colors">
-                    <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg p-3">
+                    <div className="bg-purple-900/20 rounded-lg p-3">
                       <div className="text-purple-400">
                         {info.icon}
                       </div>
@@ -236,7 +235,7 @@ const Contact = () => {
 
                 <Button 
                   type="submit" 
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 py-3"
+                  className="w-full bg-gray-900/70 text-white font-semibold shadow-lg border border-purple-700/40 hover:bg-gray-800/80 hover:shadow-purple-700/30 transition-all py-3"
                 >
                   Send Message <Send className="ml-2 h-4 w-4" />
                 </Button>

@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Star, Users, Award, ArrowRight, Clock, BookOpen, Trophy, MapPin, Phone, Mail, CheckCircle, Target, Globe, Shield, Zap, GraduationCap, Building, Users2, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -164,14 +163,14 @@ const Certifications = () => {
       <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <Link to="/" className="text-2xl font-bold text-blue-300">
               Open Education AI
             </Link>
             <div className="hidden md:flex items-baseline space-x-8">
-              <Link to="/" className="text-gray-300 hover:text-blue-400 transition-colors px-3 py-2 text-sm font-medium">Home</Link>
-              <Link to="/certifications" className="text-white hover:text-blue-400 transition-colors px-3 py-2 text-sm font-medium">Certifications</Link>
-              <Link to="/about" className="text-gray-300 hover:text-blue-400 transition-colors px-3 py-2 text-sm font-medium">About</Link>
-              <Link to="/contact" className="text-gray-300 hover:text-blue-400 transition-colors px-3 py-2 text-sm font-medium">Contact</Link>
+              <Link to="/" className="text-white hover:text-blue-400 focus:text-blue-400 transition-colors px-3 py-2 text-sm font-medium">Home</Link>
+              <Link to="/certifications" className="text-white hover:text-blue-400 focus:text-blue-400 transition-colors px-3 py-2 text-sm font-medium">Certifications</Link>
+              <Link to="/about" className="text-white hover:text-blue-400 focus:text-blue-400 transition-colors px-3 py-2 text-sm font-medium">About</Link>
+              <Link to="/contact" className="text-white hover:text-blue-400 focus:text-blue-400 transition-colors px-3 py-2 text-sm font-medium">Contact</Link>
             </div>
           </div>
         </div>
@@ -181,7 +180,7 @@ const Certifications = () => {
       <section className="pt-24 pb-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl font-bold text-white mb-6">
-            AI <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Certifications & Training</span>
+            AI <span className="text-blue-200 font-bold">Certifications & Training</span>
           </h1>
           <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
             Comprehensive AI education programs designed by industry experts for the African market
@@ -281,7 +280,7 @@ const Certifications = () => {
             {certifications.map((cert, index) => (
               <div key={index} className="bg-gray-900 border border-gray-700 rounded-2xl p-8 hover:shadow-xl hover:shadow-blue-500/20 transition-all hover:-translate-y-2 group">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="bg-blue-500/20 text-blue-400 text-sm font-medium px-3 py-1 rounded-full border border-blue-500/30">
+                  <span className="bg-blue-900/20 text-blue-400 text-sm font-medium px-3 py-1 rounded-full border border-blue-500/30">
                     {cert.level}
                   </span>
                   <div className="flex items-center text-yellow-400">
@@ -317,7 +316,7 @@ const Certifications = () => {
                 
                 <div className="flex items-center justify-between">
                   <span className="text-3xl font-bold text-white">{cert.price}</span>
-                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700">
+                  <Button className="bg-primary text-primary-foreground font-bold border border-primary shadow-lg rounded-xl px-6 py-3 hover:bg-primary/90 hover:shadow-primary/30 hover:ring-2 hover:ring-primary transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary">
                     Enroll Now <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
@@ -349,7 +348,7 @@ const Certifications = () => {
                     </div>
                     <span className="text-2xl font-bold text-white">{masterclass.price}</span>
                   </div>
-                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700">
+                  <Button className="bg-primary text-primary-foreground font-bold border border-primary shadow-lg rounded-xl px-6 py-3 hover:bg-primary/90 hover:shadow-primary/30 hover:ring-2 hover:ring-primary transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary">
                     Register <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
@@ -409,7 +408,7 @@ const Certifications = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+      <section className="py-20 bg-blue-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-white mb-4">Contact Us</h2>
