@@ -63,7 +63,7 @@ const Index = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-28 pb-20 bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900">
+      <section className="pt-32 pb-20 bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
@@ -90,14 +90,24 @@ const Index = () => {
                 </Link>
               </div>
             </div>
-            <div className="relative flex items-center justify-center min-h-[320px]">
-              {/* AI-Themed Illustration */}
-              <img
-                src="/lovable-uploads/22c97659-45cd-46b2-afd5-d63b15cb5554.png"
-                alt="Open Education AI"
-                className="relative z-10 w-60 h-60 object-contain drop-shadow-xl mx-auto animate-float"
-                loading="eager"
-              />
+            <div className="relative flex items-center justify-center min-h-[400px]">
+              {/* Enhanced Logo Display */}
+              <div className="relative">
+                {/* Glow effect behind logo */}
+                <div className="absolute inset-0 bg-purple-500/20 rounded-full blur-3xl scale-150"></div>
+                <div className="absolute inset-0 bg-pink-500/10 rounded-full blur-2xl scale-125"></div>
+                
+                {/* Logo container */}
+                <div className="relative z-10 bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl rounded-3xl p-8 border-2 border-purple-400/30 shadow-2xl">
+                  <img
+                    src="/lovable-uploads/22c97659-45cd-46b2-afd5-d63b15cb5554.png"
+                    alt="Open Education AI"
+                    className="w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-2xl mx-auto animate-float"
+                    loading="eager"
+                  />
+                </div>
+              </div>
+              
               {/* Glassmorphism Card Overlay */}
               <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 w-11/12 sm:w-[480px] md:w-[540px] min-h-[210px] bg-gray-900/70 backdrop-blur-2xl rounded-3xl border-2 border-purple-700/40 shadow-2xl p-12 flex flex-col items-center overflow-hidden">
                 <h3 className="text-4xl md:text-5xl font-black text-white mb-4 text-center drop-shadow-lg z-10 tracking-tight">Shape Tomorrow with AI</h3>

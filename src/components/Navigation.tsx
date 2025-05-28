@@ -10,21 +10,25 @@ const Navigation = () => {
     <header className="fixed top-0 w-full z-50">
       <nav className="relative bg-gray-900/95 backdrop-blur-sm border-b border-purple-800/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link 
                 to="/" 
-                className="inline-flex items-center gap-3 hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-4 hover:opacity-90 transition-opacity"
                 aria-label="Open Education AI Home"
               >
-                <img 
-                  src="/lovable-uploads/22c97659-45cd-46b2-afd5-d63b15cb5554.png" 
-                  alt="Open Education AI"
-                  className="h-10 w-10"
-                  loading="eager"
-                />
-                <span className="text-lg font-semibold text-white hidden sm:block">Open Education AI</span>
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-2 border border-purple-500/30">
+                  <img 
+                    src="/lovable-uploads/22c97659-45cd-46b2-afd5-d63b15cb5554.png" 
+                    alt="Open Education AI"
+                    className="h-12 w-12 drop-shadow-lg"
+                    loading="eager"
+                  />
+                </div>
+                <span className="text-xl font-bold text-white hidden sm:block tracking-tight">
+                  Open Education AI
+                </span>
               </Link>
             </div>
 
