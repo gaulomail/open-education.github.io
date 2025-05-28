@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -7,11 +8,11 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-4">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-purple-500/30 mr-3">
+              <div className="bg-white/15 backdrop-blur-sm rounded-lg p-2 border border-purple-500/40 mr-3 shadow-lg shadow-purple-500/20">
                 <img 
                   src="/lovable-uploads/22c97659-45cd-46b2-afd5-d63b15cb5554.png" 
                   alt="Open Education AI Logo" 
-                  className="h-8 w-8 drop-shadow-lg"
+                  className="h-10 w-10 drop-shadow-lg"
                 />
               </div>
               <span className="text-xl font-bold text-purple-300">

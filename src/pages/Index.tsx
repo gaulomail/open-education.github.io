@@ -93,16 +93,17 @@ const Index = () => {
             <div className="relative flex items-center justify-center min-h-[400px]">
               {/* Enhanced Logo Display */}
               <div className="relative">
-                {/* Glow effect behind logo */}
-                <div className="absolute inset-0 bg-purple-500/20 rounded-full blur-3xl scale-150"></div>
-                <div className="absolute inset-0 bg-pink-500/10 rounded-full blur-2xl scale-125"></div>
+                {/* Multiple glow effects for better visibility */}
+                <div className="absolute inset-0 bg-purple-500/30 rounded-full blur-3xl scale-150"></div>
+                <div className="absolute inset-0 bg-pink-500/20 rounded-full blur-2xl scale-125"></div>
+                <div className="absolute inset-0 bg-white/5 rounded-full blur-xl scale-110"></div>
                 
-                {/* Logo container */}
-                <div className="relative z-10 bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl rounded-3xl p-8 border-2 border-purple-400/30 shadow-2xl">
+                {/* Logo container with enhanced visibility */}
+                <div className="relative z-10 bg-gradient-to-br from-white/25 to-white/15 backdrop-blur-xl rounded-3xl p-10 border-2 border-purple-400/40 shadow-2xl shadow-purple-500/30">
                   <img
                     src="/lovable-uploads/22c97659-45cd-46b2-afd5-d63b15cb5554.png"
                     alt="Open Education AI"
-                    className="w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-2xl mx-auto animate-float"
+                    className="w-40 h-40 md:w-48 md:h-48 object-contain drop-shadow-2xl mx-auto animate-float"
                     loading="eager"
                   />
                 </div>
