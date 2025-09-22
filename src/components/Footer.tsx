@@ -11,7 +11,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/842cfd68-aa1d-47ac-a40b-51f239c78f49.png" 
                 alt="Open Education AI Logo" 
-                className="h-16 w-16 object-contain filter brightness-0 invert" // Attempt to make logo appear white
+                className="h-28 w-28 object-contain filter brightness-0 invert" // Attempt to make logo appear white
               />
               {/* Optionally, add back a simple text logo if needed for dark bg
               <span className="text-xl font-bold text-purple-300 ml-3">Open Education AI</span> 

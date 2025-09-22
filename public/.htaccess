@@ -1,0 +1,35 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # Handle file and directory requests directly
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  
+  # Redirect all other requests to index.html for SPA routing
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Enable CORS for API requests
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+  Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+  Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
+# Set PHP values
+<IfModule mod_php7.c>
+  php_value upload_max_filesize 10M
+  php_value post_max_size 12M
+  php_value max_execution_time 300
+  php_value max_input_time 300
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "^\.|composer\.json|package\.json|\.env|README\.md">
+  Order allow,deny
+  Deny from all
+</FilesMatch>

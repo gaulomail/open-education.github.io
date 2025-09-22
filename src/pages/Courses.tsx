@@ -5,65 +5,61 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { BookOpen, Clock, Star, Search, Filter, Users, TrendingUp, Sparkles, Target, Award, Zap, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { BookOpen, Clock, Star, Search, Filter, Users, TrendingUp, Sparkles, Target, Award, Zap } from 'lucide-react';
 import { enrollmentService, type Course } from '@/services/enrollment';
 import { CourseEnrollment } from '@/components/CourseEnrollment';
 import { type EnrollmentData } from '@/services/payfast';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
-const Programmes = () => {
-  const [programmes, setProgrammes] = useState<Course[]>([]);
-  const [filteredProgrammes, setFilteredProgrammes] = useState<Course[]>([]);
+const Courses = () => {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedLevel, setSelectedLevel] = useState<string>('all');
-  const [selectedProgramme, setSelectedProgramme] = useState<Course | null>(null);
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [showEnrollmentDialog, setShowEnrollmentDialog] = useState(false);
   const [stats, setStats] = useState({
-    totalProgrammes: 0,
+    totalCourses: 0,
     totalEnrollments: 0,
     completionRate: 0,
   });
 
   useEffect(() => {
-    const allProgrammes = enrollmentService.getCourses(); // Using the same service
-    setProgrammes(allProgrammes);
-    setFilteredProgrammes(allProgrammes);
+    const allCourses = enrollmentService.getCourses();
+    setCourses(allCourses);
+    setFilteredCourses(allCourses);
     setStats({
-      totalProgrammes: allProgrammes.length,
+      totalCourses: allCourses.length,
       totalEnrollments: enrollmentService.getEnrollmentStats().total,
       completionRate: enrollmentService.getEnrollmentStats().completionRate,
     });
   }, []);
 
   useEffect(() => {
-    let filtered = programmes;
+    let filtered = courses;
 
     // Apply search filter
     if (searchQuery) {
-      filtered = programmes.filter(programme => 
-        programme.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        programme.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        programme.category.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      filtered = enrollmentService.searchCourses(searchQuery);
     }
 
     // Apply category filter
     if (selectedCategory !== 'all') {
-      filtered = filtered.filter(programme => programme.category === selectedCategory);
+      filtered = filtered.filter(course => course.category === selectedCategory);
     }
 
     // Apply level filter
     if (selectedLevel !== 'all') {
-      filtered = filtered.filter(programme => programme.level === selectedLevel);
+      filtered = filtered.filter(course => course.level === selectedLevel);
     }
 
-    setFilteredProgrammes(filtered);
-  }, [programmes, searchQuery, selectedCategory, selectedLevel]);
+    setFilteredCourses(filtered);
+  }, [courses, searchQuery, selectedCategory, selectedLevel]);
 
-  const handleEnroll = (programme: Course) => {
-    setSelectedProgramme(programme);
+  const handleEnroll = (course: Course) => {
+    setSelectedCourse(course);
     setShowEnrollmentDialog(true);
   };
 
@@ -71,7 +67,7 @@ const Programmes = () => {
     // Update stats after successful enrollment
     const newStats = enrollmentService.getEnrollmentStats();
     setStats({
-      totalProgrammes: programmes.length,
+      totalCourses: courses.length,
       totalEnrollments: newStats.total,
       completionRate: newStats.completionRate,
     });
@@ -79,7 +75,7 @@ const Programmes = () => {
 
   const handleCloseEnrollment = () => {
     setShowEnrollmentDialog(false);
-    setSelectedProgramme(null);
+    setSelectedCourse(null);
   };
 
   const getLevelColor = (level: string) => {
@@ -112,17 +108,17 @@ const Programmes = () => {
   };
 
   const getUniqueCategories = () => {
-    const categories = programmes.map(programme => programme.category);
+    const categories = courses.map(course => course.category);
     return ['all', ...Array.from(new Set(categories))];
   };
 
   const getUniqueLevels = () => {
-    const levels = programmes.map(programme => programme.level);
+    const levels = courses.map(course => course.level);
     return ['all', ...Array.from(new Set(levels))];
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
       
       {/* Hero Section */}
@@ -140,13 +136,13 @@ const Programmes = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
               Master Your Skills with
               <span className="block text-yellow-300">
-                Our Programmes
+                Our Courses
               </span>
             </h1>
             
             <p className="text-xl md:text-2xl text-indigo-100 mb-10 max-w-4xl mx-auto leading-relaxed">
               Discover comprehensive training programs designed to accelerate your career growth. 
-              From beginner to advanced, we have the perfect programme for every skill level.
+              From beginner to advanced, we have the perfect course for every skill level.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -155,8 +151,8 @@ const Programmes = () => {
                   <BookOpen className="w-6 h-6 text-white" />
                 </div>
                 <div className="text-left">
-                  <div className="text-2xl font-bold text-white">{stats.totalProgrammes}+</div>
-                  <div className="text-sm text-indigo-100">Premium Programmes</div>
+                  <div className="text-2xl font-bold text-white">{stats.totalCourses}+</div>
+                  <div className="text-sm text-indigo-100">Premium Courses</div>
                 </div>
               </div>
               
@@ -194,10 +190,10 @@ const Programmes = () => {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <Input
                   type="text"
-                  placeholder="Search for programmes, skills, or topics..."
+                  placeholder="Search for courses, skills, or topics..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-xl"
+                  className="pl-10 h-12 border-gray-200 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl"
                 />
               </div>
             </div>
@@ -205,7 +201,7 @@ const Programmes = () => {
             {/* Category Filter */}
             <div>
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-xl">
+                <SelectTrigger className="h-12 border-gray-200 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
@@ -221,7 +217,7 @@ const Programmes = () => {
             {/* Level Filter */}
             <div>
               <Select value={selectedLevel} onValueChange={setSelectedLevel}>
-                <SelectTrigger className="h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-xl">
+                <SelectTrigger className="h-12 border-gray-200 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl">
                   <SelectValue placeholder="Level" />
                 </SelectTrigger>
                 <SelectContent>
@@ -240,10 +236,10 @@ const Programmes = () => {
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Target className="w-4 h-4" />
-                <span>Showing {filteredProgrammes.length} of {programmes.length} programmes</span>
+                <span>Showing {filteredCourses.length} of {courses.length} courses</span>
               </div>
               {(searchQuery || selectedCategory !== 'all' || selectedLevel !== 'all') && (
-                <Badge variant="secondary" className="bg-purple-50 text-purple-700 border-purple-200">
+                <Badge variant="secondary" className="bg-indigo-50 text-indigo-700 border-indigo-200">
                   <Filter className="w-3 h-3 mr-1" />
                   Filters Active
                 </Badge>
@@ -268,27 +264,18 @@ const Programmes = () => {
         </div>
       </div>
 
-      {/* Programmes Section */}
-      <section id="programmes" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Our AI Programmes
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Choose from our comprehensive range of AI programmes designed to accelerate your career growth
-          </p>
-        </div>
-        
-        {/* Programmes Grid */}
+      {/* Courses Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Courses Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProgrammes.map((programme, index) => (
-            <Card key={programme.id} className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white hover:bg-gray-50 hover:scale-[1.02] overflow-hidden rounded-2xl">
-              {/* Programme Image */}
-              {programme.image && (
-                <div className="relative h-56 bg-gray-200 overflow-hidden">
+          {filteredCourses.map(course => (
+            <Card key={course.id} className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white hover:bg-gray-50 hover:scale-[1.02] overflow-hidden rounded-2xl">
+                              {/* Course Image */}
+                {course.image && (
+                  <div className="relative h-56 bg-gray-200 overflow-hidden">
                   <img
-                    src={programme.image}
-                    alt={programme.name}
+                    src={course.image}
+                    alt={course.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -296,59 +283,59 @@ const Programmes = () => {
                       target.nextElementSibling?.classList.remove('hidden');
                     }}
                   />
-                  <div className="hidden absolute inset-0 bg-purple-600 flex items-center justify-center">
+                  <div className="hidden absolute inset-0 bg-indigo-600 flex items-center justify-center">
                     <BookOpen className="w-16 h-16 text-white opacity-50" />
                   </div>
                   
                   {/* Overlay Badges */}
                   <div className="absolute top-4 left-4 right-4 flex justify-between">
-                    <Badge className={`${getCategoryColor(programme.category)} border-0 shadow-lg`}>
-                      {programme.category}
+                    <Badge className={`${getCategoryColor(course.category)} border-0 shadow-lg`}>
+                      {course.category}
                     </Badge>
-                    <Badge className={`${getLevelColor(programme.level)} border-0 shadow-lg`}>
-                      {programme.level}
+                    <Badge className={`${getLevelColor(course.level)} border-0 shadow-lg`}>
+                      {course.level}
                     </Badge>
                   </div>
                   
                   {/* Price Tag */}
                   <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl px-3 py-2 shadow-lg">
                     <div className="text-lg font-bold text-gray-900">
-                      {formatCurrency(programme.price, programme.currency)}
+                      {formatCurrency(course.price, course.currency)}
                     </div>
                   </div>
                 </div>
               )}
               
               <CardHeader className="pb-4">
-                <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors duration-300 line-clamp-2 leading-tight">
-                  {programme.name}
+                <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors duration-300 line-clamp-2 leading-tight">
+                  {course.name}
                 </CardTitle>
                 <CardDescription className="text-gray-600 line-clamp-3 leading-relaxed">
-                  {programme.description}
+                  {course.description}
                 </CardDescription>
               </CardHeader>
               
               <CardContent className="space-y-4">
-                {/* Programme Details */}
+                {/* Course Details */}
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="flex items-center gap-2 text-gray-600">
-                    <div className="p-2 bg-purple-50 rounded-lg">
-                      <Clock className="w-4 h-4 text-purple-600" />
+                    <div className="p-2 bg-indigo-50 rounded-lg">
+                      <Clock className="w-4 h-4 text-indigo-600" />
                     </div>
-                    <span>{programme.duration}</span>
+                    <span>{course.duration}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600">
                     <div className="p-2 bg-amber-50 rounded-lg">
                       <Star className="w-4 h-4 text-amber-600" />
                     </div>
-                    <span className="capitalize">{programme.level}</span>
+                    <span className="capitalize">{course.level}</span>
                   </div>
                 </div>
 
                 {/* Enroll Button */}
                 <Button
-                  onClick={() => handleEnroll(programme)}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  onClick={() => handleEnroll(course)}
+                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
                   <BookOpen className="w-5 h-5 mr-2" />
                   Enroll Now
@@ -359,12 +346,12 @@ const Programmes = () => {
         </div>
 
         {/* No Results */}
-        {filteredProgrammes.length === 0 && (
+        {filteredCourses.length === 0 && (
           <div className="text-center py-20">
-            <div className="w-24 h-24 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <BookOpen className="w-12 h-12 text-purple-600" />
+            <div className="w-24 h-24 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <BookOpen className="w-12 h-12 text-indigo-600" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">No programmes found</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">No courses found</h3>
             <p className="text-gray-600 max-w-md mx-auto mb-6">
               Try adjusting your search criteria or filters to find what you're looking for.
             </p>
@@ -375,24 +362,24 @@ const Programmes = () => {
                 setSelectedCategory('all');
                 setSelectedLevel('all');
               }}
-              className="border-purple-200 text-purple-600 hover:bg-purple-50 rounded-xl"
+              className="border-indigo-200 text-indigo-600 hover:bg-indigo-50 rounded-xl"
             >
               <Zap className="w-4 h-4 mr-2" />
               Clear All Filters
             </Button>
           </div>
         )}
-      </section>
+      </div>
 
       {/* Enrollment Dialog */}
       <Dialog open={showEnrollmentDialog} onOpenChange={setShowEnrollmentDialog}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto border-0 shadow-2xl rounded-2xl">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-gray-900">Programme Enrollment</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-gray-900">Course Enrollment</DialogTitle>
           </DialogHeader>
-          {selectedProgramme && (
+          {selectedCourse && (
             <CourseEnrollment
-              course={selectedProgramme}
+              course={selectedCourse}
               onEnrollmentSuccess={handleEnrollmentSuccess}
             />
           )}
@@ -404,4 +391,4 @@ const Programmes = () => {
   );
 };
 
-export default Programmes;
+export default Courses;

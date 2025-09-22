@@ -21,7 +21,7 @@ const Navigation = () => {
                 <img 
                   src="/lovable-uploads/842cfd68-aa1d-47ac-a40b-51f239c78f49.png" 
                   alt="Open Education AI Logo"
-                  className="h-16 w-16 object-contain"
+                  className="h-28 w-28 object-contain"
                   loading="eager"
                 />
                 {/* Text removed as per request */}
@@ -31,6 +31,7 @@ const Navigation = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex md:items-center md:space-x-8">
               <Link to="/" className="nav-link">Home</Link>
+              <Link to="/courses" className="nav-link">Courses</Link>
               <Link to="/programmes" className="nav-link">Programmes</Link>
               <Link to="/qualifications" className="nav-link">Qualifications</Link>
               <Link to="/masterclasses" className="nav-link">Masterclasses</Link>
@@ -73,6 +74,13 @@ const Navigation = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Home
+            </Link>
+            <Link 
+              to="/courses" 
+              className="mobile-nav-link"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Courses
             </Link>
             <Link 
               to="/programmes" 

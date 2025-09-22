@@ -1,34 +1,54 @@
 import { Link } from 'react-router-dom';
-import { Star, Users, Award, ArrowRight, Globe, Shield, Zap, Target, Eye, Heart, Users2, CheckCircle, Clock, BookOpen, LifeBuoy } from 'lucide-react';
+import { Star, Users, Award, ArrowRight, Globe, Shield, Zap, Target, Eye, Heart, Users2, CheckCircle, Clock, BookOpen, LifeBuoy, Sparkles, TrendingUp, Rocket, Lightbulb, ArrowUpRight, Play, CreditCard, Mail, Phone, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Badge } from '@/components/ui/badge';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import React from 'react';
+import React, { useState } from 'react';
 import AnimatedStatCard from '@/components/AnimatedStatCard';
+import { payfastService, type EnrollmentData } from '@/services/payfast';
 
 const Index = () => {
+  const [selectedCourse, setSelectedCourse] = useState<any>(null);
+  const [isEnrollmentOpen, setIsEnrollmentOpen] = useState(false);
+  const [enrollmentForm, setEnrollmentForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    company: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const stats = [
-    { number: "50K+", label: "Certified Professionals", icon: <Award /> },
-    { number: "200+", label: "AI Courses", icon: <BookOpen /> },
-    { number: "95%", label: "Success Rate", icon: <CheckCircle /> },
-    { number: "24/7", label: "Support", icon: <LifeBuoy /> }
+    { number: "50K+", label: "Certified Professionals", icon: <Award />, color: "text-blue-600" },
+    { number: "200+", label: "AI Courses", icon: <BookOpen />, color: "text-purple-600" },
+    { number: "95%", label: "Success Rate", icon: <CheckCircle />, color: "text-emerald-600" },
+    { number: "24/7", label: "Support", icon: <LifeBuoy />, color: "text-orange-600" }
   ];
 
   const features = [
     {
-      icon: <Globe className="w-10 h-10 text-purple-600" />,
+      icon: <Globe className="w-12 h-12 text-blue-600" />,
       title: "Global Recognition",
-      description: "Industry-recognized programmes accepted worldwide by leading tech companies."
+      description: "Industry-recognized programmes accepted worldwide by leading tech companies.",
+      gradient: "from-blue-500 to-cyan-500"
     },
     {
-      icon: <Shield className="w-10 h-10 text-purple-600" />,
+      icon: <Shield className="w-12 h-12 text-purple-600" />,
       title: "Secure Verification",
-      description: "Blockchain-powered programme credential verification for authentic credentials."
+      description: "Blockchain-powered programme credential verification for authentic credentials.",
+      gradient: "from-purple-500 to-pink-500"
     },
     {
-      icon: <Zap className="w-10 h-10 text-purple-600" />,
+      icon: <Zap className="w-12 h-12 text-amber-600" />,
       title: "Instant Results",
-      description: "Get your programme results immediately after completion with detailed feedback."
+      description: "Get your programme results immediately after completion with detailed feedback.",
+      gradient: "from-amber-500 to-orange-500"
     }
   ];
 
@@ -40,7 +60,8 @@ const Index = () => {
       rating: 4.9,
       students: "12,000+",
       price: "R2,999",
-      imageUrl: "https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=600"
+      imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop&crop=center",
+      category: "Artificial Intelligence"
     },
     {
       title: "Machine Learning Expert",
@@ -49,7 +70,8 @@ const Index = () => {
       rating: 4.8,
       students: "8,500+",
       price: "R5,999",
-      imageUrl: "https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=600"
+      imageUrl: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=400&fit=crop&crop=center",
+      category: "Machine Learning"
     },
     {
       title: "AI Ethics & Governance",
@@ -58,30 +80,35 @@ const Index = () => {
       rating: 4.9,
       students: "5,200+",
       price: "R3,999",
-      imageUrl: "https://images.pexels.com/photos/5676744/pexels-photo-5676744.jpeg?auto=compress&cs=tinysrgb&w=600"
+      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=center",
+      category: "AI Ethics"
     }
   ];
 
   const coreValuesData = [
     {
-      icon: <Heart className="w-6 h-6" />,
+      icon: <Heart className="w-8 h-8" />,
       title: "Inclusive Learning",
-      description: "Making education fair, inclusive, and accessible for everyone, regardless of background or location."
+      description: "Making education fair, inclusive, and accessible for everyone, regardless of background or location.",
+      color: "text-rose-600"
     },
     {
-      icon: <Globe className="w-6 h-6" />,
+      icon: <Globe className="w-8 h-8" />,
       title: "Global Standards",
-      description: "Aligning with global industry standards and best practices for relevance across diverse economies."
+      description: "Aligning with global industry standards and best practices for relevance across diverse economies.",
+      color: "text-blue-600"
     },
     {
-      icon: <Users2 className="w-6 h-6" />,
+      icon: <Users2 className="w-8 h-8" />,
       title: "Community Focus",
-      description: "Creating a collaborative community where learners and educators thrive together."
+      description: "Creating a collaborative community where learners and educators thrive together.",
+      color: "text-emerald-600"
     },
     {
-      icon: <Award className="w-6 h-6" />,
+      icon: <Award className="w-8 h-8" />,
       title: "Excellence",
-      description: "Delivering top-notch, tailored learning experiences that bridge educational gaps."
+      description: "Delivering top-notch, tailored learning experiences that bridge educational gaps.",
+      color: "text-amber-600"
     }
   ];
 
@@ -90,273 +117,607 @@ const Index = () => {
     "Expressing commitment to quality and customer satisfaction at all times",
     "Creating an increasing customer base through exceptional service",
     "Achieving growth and profit in line with industry standards",
-    "Delivering excellence in training interventions and learning outcomes"
+    "Delivering top-notch, tailored learning experiences that bridge educational gaps."
   ];
 
+  // Handle enrollment
+  const handleEnroll = (course: any) => {
+    setSelectedCourse(course);
+    setIsEnrollmentOpen(true);
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setEnrollmentForm(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSubmitEnrollment = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!enrollmentForm.firstName || !enrollmentForm.lastName || !enrollmentForm.email) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      // Create enrollment data for PayFast
+      const enrollmentData: EnrollmentData = {
+        id: `course-${Date.now()}`,
+        userId: 'user-1', // Default user for demo
+        courseId: selectedCourse.title.toLowerCase().replace(/\s+/g, '-'),
+        courseName: selectedCourse.title,
+        amount: parseFloat(selectedCourse.price.replace('R', '').replace(',', '')),
+        currency: 'ZAR',
+        firstName: enrollmentForm.firstName,
+        lastName: enrollmentForm.lastName,
+        email: enrollmentForm.email,
+        phone: enrollmentForm.phone || undefined,
+        paymentStatus: 'pending',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+
+      // Create PayFast payment session
+      const { formData } = payfastService.createPaymentSession(enrollmentData);
+      
+      // Create a hidden form and submit it to PayFast (following websky-dreamscape pattern)
+      const payfastForm = document.createElement('form');
+      payfastForm.method = 'post';
+      payfastForm.action = payfastService.getBaseUrl();
+      payfastForm.style.display = 'none';
+
+      // Add all form data
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== '') {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = value.toString();
+          payfastForm.appendChild(input);
+        }
+      });
+
+
+
+      // Submit the form to PayFast
+      document.body.appendChild(payfastForm);
+      payfastForm.submit();
+      // No need to remove the form immediately, PayFast handles the redirect
+
+      // Reset form and close dialog
+      setEnrollmentForm({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        company: '',
+        message: ''
+      });
+      setIsSubmitting(false);
+      setIsEnrollmentOpen(false);
+      setSelectedCourse(null);
+      
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Payment processing failed';
+      alert(`Error: ${errorMessage}`);
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleCloseEnrollment = () => {
+    setIsEnrollmentOpen(false);
+    setSelectedCourse(null);
+    setEnrollmentForm({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      company: '',
+      message: ''
+    });
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 font-normal"> {/* Apply Poppins normal globally */}
+    <div className="min-h-screen bg-white">
       <Navigation />
 
       {/* Hero Section */}
-      <section 
-        className="relative min-h-[70vh] md:min-h-[85vh] flex items-center justify-center text-center bg-cover bg-center bg-no-repeat py-20 px-4 sm:px-6 lg:px-8"
-        style={{ backgroundImage: "url('https://images.pexels.com/photos/207601/pexels-photo-207601.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2')" }}
-      >
-        <div className="absolute inset-0 bg-black/75"></div>
-        <div className="relative z-10 max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-12 duration-1000 ease-out">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-md">
-            Transform Education with
-            <span className="text-purple-300 font-bold block mt-2 sm:mt-3">
-              AI-Powered Learning
-            </span>
-          </h1>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-200 font-light mb-10 leading-relaxed drop-shadow-sm max-w-3xl mx-auto">
-            Open Education AI provides high-quality, accredited micro-learning programmes that leverage 
-            artificial intelligence to empower learners worldwide with practical skills and knowledge.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/getting-started">
-              <Button size="xl" className="bg-purple-600 text-white font-semibold px-10 py-5 text-lg rounded-xl shadow-lg hover:bg-purple-700 hover:shadow-purple-700/40 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black/75">
-                Get Started Today
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=1080&fit=crop&crop=center" 
+            alt="Diverse students from all tribes learning together"
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              console.log('Image failed to load, using fallback');
+              e.currentTarget.style.display = 'none';
+            }}
+          />
+          {/* Fallback pattern if image doesn't load */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-purple-900/40 to-indigo-900/40"></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
+          <div className="text-center">
+            {/* Premium Badge */}
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-white/20">
+              <Sparkles className="w-5 h-5 text-yellow-400" />
+              <span className="text-sm font-semibold text-white/90">Premium AI Learning Platform</span>
+            </div>
+            
+            {/* Main Heading */}
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+              Master the Future of
+              <span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+                Artificial Intelligence
+              </span>
+            </h1>
+            
+            {/* Subtitle */}
+            <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-4xl mx-auto leading-relaxed">
+              Transform your career with industry-leading AI courses, expert mentorship, and globally recognized certifications. 
+              Join thousands of professionals shaping the future of technology.
+            </p>
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+              <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-4 rounded-2xl text-lg shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:-translate-y-1">
+                <Link to="/courses">
+                  <Rocket className="w-5 h-5 mr-2" />
+                  Explore Courses
+                </Link>
               </Button>
-            </Link>
-            <Link to="/programmes">
-              <Button size="xl" variant="outline" className="px-10 py-5 text-lg border-2 border-purple-300 text-purple-200 font-medium bg-white/10 hover:bg-white/20 hover:text-white hover:border-purple-200 transition-all duration-300 rounded-xl transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-300 focus:ring-offset-2 focus:ring-offset-black/75">
-                View Programmes
+              <Button variant="outline" size="lg" className="bg-purple-800 border-purple-600 text-white hover:bg-purple-700 font-semibold px-8 py-4 rounded-2xl text-lg">
+                <Play className="w-5 h-5 mr-2" />
+                Watch Demo
               </Button>
-            </Link>
+            </div>
+            
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center group">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 group-hover:bg-white/20 transition-all duration-300">
+                    <div className={`w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <div className={stat.color}>{stat.icon}</div>
+                    </div>
+                    <div className="text-3xl font-bold text-white mb-2">{stat.number}</div>
+                    <div className="text-sm text-purple-200">{stat.label}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* About Us Section (Who We Are, Mission, Vision) */}
-      <section className="py-16 md:py-24 bg-white animate-in fade-in slide-in-from-bottom-10 duration-700 ease-out delay-200">
+      {/* Features Section */}
+      <section className="py-24 bg-gradient-to-b from-white to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                Welcome to <span className="text-purple-600 font-semibold">Open Education AI</span>
-             </h2>
-             <p className="text-lg text-gray-600 font-normal max-w-3xl mx-auto">Your partner in transformative AI-powered learning experiences designed for the future.</p>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Why Choose Our Platform?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We combine cutting-edge technology with proven learning methodologies to deliver exceptional results
+            </p>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center mb-12 md:mb-20">
-            <div className="order-2 lg:order-1 animate-in fade-in slide-in-from-left-16 duration-700 ease-out delay-300">
-              <h3 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-5">Who We Are</h3>
-              <p className="text-gray-700 font-normal text-base leading-relaxed mb-4"> {/* Ensured text-base and font-normal */}
-                Open Education AI is dedicated to providing high-quality, accredited micro-learning 
-                programmes that leverage the power of artificial intelligence to empower learners worldwide. Our 
-                AI-enhanced training solutions equip students with practical skills and knowledge to excel 
-                professionally, regardless of their background or location.
-              </p>
-              <p className="text-gray-700 font-normal text-base leading-relaxed"> {/* Ensured text-base and font-normal */}
-                By integrating AI-driven insights and aligning our programmes with global industry standards, 
-                we ensure relevance and applicability across diverse economic environments. 
-              </p>
-            </div>
-            <div className="order-1 lg:order-2 flex items-center justify-center animate-in fade-in slide-in-from-right-16 duration-700 ease-out delay-300">
-              <img 
-                src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt="Diverse team collaborating on a project"
-                className="rounded-xl shadow-2xl object-cover w-full h-auto max-h-[450px]"
-              />
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-10 md:gap-16">
-            <div className="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-purple-500/10 transition-shadow duration-300 animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out delay-400">
-              <div className="flex items-center text-purple-600 mb-4">
-                <Target className="w-9 h-9 mr-3" />
-                <h4 className="text-2xl font-semibold text-gray-900">Our Mission</h4>
-              </div>
-              <p className="text-gray-700 font-normal leading-relaxed">
-                To revolutionise education through AI, providing accessible, personalised learning experiences 
-                that promote equity, support learners and educators, and inculcate lifelong learning in an 
-                inclusive, future-ready educational ecosystem.
-              </p>
-            </div>
-            <div className="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-purple-500/10 transition-shadow duration-300 animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out delay-500">
-              <div className="flex items-center text-purple-600 mb-4">
-                <Eye className="w-9 h-9 mr-3" />
-                <h4 className="text-2xl font-semibold text-gray-900">Our Vision</h4>
-              </div>
-              <p className="text-gray-700 font-normal leading-relaxed">
-                To transform education through artificial intelligence, providing high-quality, personalised 
-                learning experiences that empower students, bridge educational disparities, and 
-                promote continuous, inclusive learning for all.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section - Enhanced */}
-      <section className="py-16 md:py-20 bg-purple-700 text-white animate-in fade-in duration-700 ease-out">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <AnimatedStatCard 
-                key={index}
-                targetValue={stat.number}
-                label={stat.label}
-                icon={stat.icon}
-                animationDelay={`${index * 150}ms`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us? (Features Section) - Enhanced */}
-      <section className="py-16 md:py-24 bg-gray-50 animate-in fade-in slide-in-from-bottom-10 duration-700 ease-out delay-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose <span className="text-purple-600 font-semibold">Open Education AI?</span>
-            </h2>
-            <p className="text-lg text-gray-600 font-normal max-w-3xl mx-auto">
-              Our AI programmes are designed by industry experts and recognized globally by leading tech companies.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl hover:shadow-purple-500/15 hover:-translate-y-1 transition-all duration-300 ease-out group text-center flex flex-col items-center animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out" style={{ animationDelay: `${100 + index * 150}ms` }}>
-                <div className="bg-purple-100 rounded-full p-5 w-fit mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                  {feature.icon} 
+              <div key={index} className="group">
+                <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                  <div className={`w-20 h-20 bg-gradient-to-br ${feature.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className="text-white">{feature.icon}</div>
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{feature.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
                 </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-600 font-normal leading-relaxed text-sm">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      {/* Core Values Section - Enhanced */}
-      <section className="py-16 md:py-24 bg-white animate-in fade-in slide-in-from-bottom-10 duration-700 ease-out delay-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Our Core Values</h2>
-            <p className="text-lg text-gray-600 font-normal max-w-2xl mx-auto">
-              The principles that guide everything we do, fostering an environment of growth and innovation.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {coreValuesData.map((value, index) => (
-              <div key={index} className="bg-gray-50 rounded-xl p-8 hover:shadow-xl hover:border-purple-300 hover:-translate-y-1 transition-all duration-300 ease-out group flex flex-col items-center text-center border border-transparent animate-in fade-in zoom-in-95 duration-500 ease-out" style={{ animationDelay: `${100 + index * 150}ms` }}>
-                <div className="bg-purple-100 text-purple-600 rounded-full p-4 w-fit mb-5 transform group-hover:scale-105 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
-                  {React.cloneElement(value.icon, { className: 'w-8 h-8' })}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{value.title}</h3>
-                <p className="text-gray-600 font-normal text-sm leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Popular Programmes Section */}
-      <section className="py-16 md:py-24 bg-gray-50 animate-in fade-in slide-in-from-bottom-10 duration-700 ease-out delay-200">
+      {/* Featured Courses Section */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Explore Our Popular <span className="text-purple-600 font-semibold">AI Programmes</span>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Featured Courses
             </h2>
-            <p className="text-lg text-gray-600 font-normal max-w-2xl mx-auto">
-              Choose from our comprehensive range of AI programmes tailored for various skill levels.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Start your AI journey with our most popular and highly-rated courses
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {programmesData.map((prog, index) => ( 
-              <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden group transform hover:scale-105 hover:shadow-2xl transition-all duration-300 ease-out flex flex-col animate-in fade-in zoom-in-95 duration-500 ease-out" style={{ animationDelay: `${100 + index * 150}ms` }}>
-                <img src={prog.imageUrl} alt={prog.title} className="w-full h-52 object-cover"/>
-                <div className="p-6 flex flex-col flex-grow">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full border border-purple-300">
-                      {prog.level}
-                    </span>
-                    <div className="flex items-center text-yellow-500">
-                      <Star className="w-4 h-4 fill-current mr-1" />
-                      <span className="text-sm font-medium text-gray-600">{prog.rating} ({prog.students})</span>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            {programmesData.map((programme, index) => (
+              <div key={index} className="group">
+                <div className="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                  {/* Course Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={programme.imageUrl} 
+                      alt={programme.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                        {programme.category}
+                      </span>
+                    </div>
+                    <div className="absolute top-4 right-4">
+                      <span className="bg-white/90 backdrop-blur-sm text-gray-900 text-xs font-semibold px-3 py-1 rounded-full">
+                        {programme.level}
+                      </span>
                     </div>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
-                    {prog.title}
-                  </h3>
-                  <p className="text-gray-600 font-normal text-sm mb-4 flex-grow">{prog.description}</p>
-                  <div className="flex items-center text-gray-500 font-normal text-sm mb-4">
-                    <Clock className="w-4 h-4 mr-2 text-purple-500" />
-                    <span>{prog.duration}</span>
-                  </div>
-                  <div className="mt-auto flex items-center justify-between pt-4 border-t border-gray-200">
-                    <span className="text-2xl font-bold text-gray-800">{prog.price}</span>
-                    <Link to="/getting-started">
-                      <Button className="bg-purple-600 text-white font-semibold px-6 py-2.5 rounded-lg hover:bg-purple-700 transition-colors text-sm">
-                        Enroll Now <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </Link>
+                  
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                      {programme.title}
+                    </h3>
+                    
+                    <div className="flex items-center gap-4 mb-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-4 h-4" />
+                        {programme.duration}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Users className="w-4 h-4" />
+                        {programme.students}
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center gap-1">
+                        <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                        <span className="font-semibold text-gray-900">{programme.rating}</span>
+                      </div>
+                      <div className="text-2xl font-bold text-purple-600">{programme.price}</div>
+                    </div>
+                    
+                                         <Button 
+                       onClick={() => handleEnroll(programme)}
+                       className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-xl transition-all duration-300"
+                     >
+                       <CreditCard className="w-4 h-4 mr-2" />
+                       Enroll Now
+                       <ArrowRight className="w-4 h-4 ml-2" />
+                     </Button>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-           <div className="text-center mt-12">
-            <Link to="/programmes">
-                <Button size="lg" variant="outline" className="border-purple-600 text-purple-600 font-medium hover:bg-purple-50 hover:text-purple-700 transition-colors px-8 py-3 text-base animate-in fade-in duration-500 ease-out delay-500">
-                    View All Programmes <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-            </Link>
+          
+                     <div className="text-center">
+             <Button asChild variant="outline" size="lg" className="border-purple-600 text-purple-600 hover:bg-purple-50 font-semibold px-8 py-4 rounded-2xl text-lg">
+               <Link to="/courses">
+                 View All Courses
+                 <ArrowUpRight className="w-5 h-5 ml-2" />
+               </Link>
+             </Button>
+           </div>
+        </div>
+      </section>
+
+      {/* Core Values Section */}
+      <section className="py-24 bg-gradient-to-b from-purple-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Our Core Values
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              The principles that guide everything we do and every decision we make
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {coreValuesData.map((value, index) => (
+              <div key={index} className="text-center group">
+                <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                  <div className={`w-20 h-20 bg-gray-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={value.color}>{value.icon}</div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{value.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Company Goals Section - Enhanced */}
-      <section className="py-16 md:py-24 bg-white animate-in fade-in slide-in-from-bottom-10 duration-700 ease-out delay-200">
+      {/* Company Goals Section */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Our Commitment to <span className="text-purple-600 font-semibold">Excellence</span></h2>
-            <p className="text-lg text-gray-600 font-normal max-w-3xl mx-auto">
-              We are dedicated to achieving key objectives that drive innovation and success in AI education.
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Our Mission & Goals
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We're committed to transforming education and empowering the next generation of AI professionals
             </p>
           </div>
-          <div className="max-w-4xl mx-auto">
-            <ul className="space-y-6">
-              {companyGoalsData.map((goal, index) => (
-                <li key={index} className="flex items-start p-6 bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out" style={{ animationDelay: `${100 + index * 100}ms` }}>
-                  <div className="flex-shrink-0 w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-xl mr-5">
-                    {index + 1}
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="space-y-6">
+                {companyGoalsData.map((goal, index) => (
+                  <div key={index} className="flex items-start gap-4">
+                                       <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                     <CheckCircle className="w-5 h-5 text-white" />
+                   </div>
+                    <p className="text-gray-700 leading-relaxed">{goal}</p>
                   </div>
-                  <p className="text-gray-700 font-normal leading-relaxed text-lg">{goal}</p>
-                </li>
-              ))}
-            </ul>
+                ))}
+              </div>
+              
+                             <div className="mt-8">
+                 <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-4 rounded-2xl text-lg">
+                   <Link to="/about">
+                     Learn More About Us
+                     <ArrowRight className="w-5 h-5 ml-2" />
+                   </Link>
+                 </Button>
+               </div>
+            </div>
+            
+                         <div className="relative">
+               <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-12 text-center">
+                 <div className="w-24 h-24 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                   <Target className="w-12 h-12 text-white" />
+                 </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+                <p className="text-gray-700 leading-relaxed">
+                  To become the world's leading platform for AI education, empowering millions of learners 
+                  to master artificial intelligence and shape the future of technology.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-700">
-        <div className="absolute inset-0 opacity-20"></div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-in fade-in zoom-in-90 duration-700 ease-out">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 drop-shadow-md">
-            Ready to Advance Your AI Career?
+      <section className="py-24 bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Ready to Transform Your Career?
           </h2>
-          <p className="text-lg sm:text-xl text-purple-200 font-normal mb-10 max-w-2xl mx-auto">
-            Join thousands of professionals who have transformed their careers with our AI programmes.
+          <p className="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
+            Join thousands of professionals who have already taken the first step towards mastering AI. 
+            Start your journey today and unlock unlimited possibilities.
           </p>
-          <div className="flex flex-col sm:flex-row gap-5 justify-center">
-            <Link to="/getting-started">
-              <Button size="xl" className="bg-white text-purple-700 font-semibold px-10 py-5 text-lg rounded-xl shadow-xl hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-purple-700">
-                Start Your Journey
+          
+                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
+             <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-4 rounded-2xl text-lg shadow-2xl hover:shadow-purple-500/25 transition-all duration-300">
+               <Link to="/courses">
+                 <Rocket className="w-4 h-5 mr-2" />
+                 Get Started Today
+               </Link>
+             </Button>
+                          <Button variant="outline" size="lg" className="bg-white/10 border-white/50 text-white hover:bg-white/20 hover:border-white/70 font-semibold px-8 py-4 rounded-2xl text-lg backdrop-blur-sm shadow-lg">
+                <Lightbulb className="w-5 h-5 mr-2" />
+                Learn More
               </Button>
-            </Link>
-            <Link to="/contact">
-              <Button size="xl" variant="outline" className="border-2 border-purple-300 text-white font-medium bg-transparent hover:bg-white hover:text-purple-700 hover:border-white px-10 py-5 text-lg rounded-xl shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-purple-700">
-                Contact Us
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
+
+      {/* Enrollment Dialog */}
+      <Dialog open={isEnrollmentOpen} onOpenChange={setIsEnrollmentOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-gray-900">
+              Enroll in {selectedCourse?.title}
+            </DialogTitle>
+          </DialogHeader>
+          
+          {selectedCourse && (
+            <div className="space-y-6">
+              {/* Course Summary */}
+              <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-100">
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <BookOpen className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                      {selectedCourse.title}
+                    </h3>
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      <Badge className="bg-purple-100 text-purple-700 border-0">
+                        {selectedCourse.level}
+                      </Badge>
+                      <Badge className="bg-emerald-100 text-emerald-700 border-0">
+                        {selectedCourse.duration}
+                      </Badge>
+                      <Badge className="bg-blue-100 text-blue-700 border-0">
+                        {selectedCourse.category}
+                      </Badge>
+                    </div>
+                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-1">
+                        <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                        <span>{selectedCourse.rating}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Users className="w-4 h-4" />
+                        <span>{selectedCourse.students}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-purple-600">
+                      {selectedCourse.price}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Enrollment Form */}
+              <form onSubmit={handleSubmitEnrollment} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="firstName" className="text-sm font-medium text-gray-700">
+                      First Name *
+                    </Label>
+                    <div className="relative mt-1">
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <Input
+                        id="firstName"
+                        type="text"
+                        value={enrollmentForm.firstName}
+                        onChange={(e) => handleInputChange('firstName', e.target.value)}
+                        className="pl-10 h-11 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg"
+                        placeholder="Enter your first name"
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="lastName" className="text-sm font-medium text-gray-700">
+                      Last Name *
+                    </Label>
+                    <div className="relative mt-1">
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <Input
+                        id="lastName"
+                        type="text"
+                        value={enrollmentForm.lastName}
+                        onChange={(e) => handleInputChange('lastName', e.target.value)}
+                        className="pl-10 h-11 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg"
+                        placeholder="Enter your last name"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                      Email Address *
+                    </Label>
+                    <div className="relative mt-1">
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <Input
+                        id="email"
+                        type="email"
+                        value={enrollmentForm.email}
+                        onChange={(e) => handleInputChange('email', e.target.value)}
+                        className="pl-10 h-11 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg"
+                        placeholder="Enter your email address"
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
+                      Phone Number
+                    </Label>
+                    <div className="relative mt-1">
+                      <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <Input
+                        id="phone"
+                        type="tel"
+                        value={enrollmentForm.phone}
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        className="pl-10 h-11 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg"
+                        placeholder="Enter your phone number"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="company" className="text-sm font-medium text-gray-700">
+                    Company/Organization
+                  </Label>
+                  <div className="relative mt-1">
+                    <div className="w-4 h-4 mx-3 mt-3 text-gray-400" />
+                    <Input
+                      id="company"
+                      type="text"
+                      value={enrollmentForm.company}
+                      onChange={(e) => handleInputChange('company', e.target.value)}
+                      className="h-11 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg"
+                      placeholder="Enter your company or organization"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="message" className="text-sm font-medium text-gray-700">
+                    Additional Information
+                  </Label>
+                  <div className="relative mt-1">
+                    <div className="w-4 h-4 mx-3 mt-3 text-gray-400" />
+                    <textarea
+                      id="message"
+                      value={enrollmentForm.message}
+                      onChange={(e) => handleInputChange('message', e.target.value)}
+                      className="w-full h-24 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg resize-none p-3"
+                      placeholder="Any additional information or questions..."
+                    />
+                  </div>
+                </div>
+
+                {/* Payment Note */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-center gap-2 text-blue-800">
+                    <CreditCard className="w-4 h-4" />
+                    <span className="text-sm font-medium">Secure Payment via PayFast</span>
+                  </div>
+                  <p className="text-blue-700 text-sm mt-1">
+                    After submitting this form, you will be redirected to PayFast to complete your payment securely.
+                  </p>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-3 pt-4">
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                        Processing...
+                      </>
+                    ) : (
+                      <>
+                        <CreditCard className="w-4 h-4 mr-2" />
+                        Proceed to Payment
+                      </>
+                    )}
+                  </Button>
+                  
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={handleCloseEnrollment}
+                    className="px-6 py-3 border-gray-200 text-gray-700 hover:bg-gray-50 rounded-lg"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </form>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>
