@@ -1,12 +1,12 @@
-# Next-Generation Learning Platform (NGLP)
+# Open Learning Platform (OLP)
 
 ## Project Overview
 
-This project is the frontend for the Next-Generation Learning Platform (NGLP). It is a modern, user-centric web application designed to serve as a front-end for a Moodle Learning Management System (LMS) backend.
+This project is the frontend for the Open Learning Platform (OLP). It is a modern, user-centric web application designed to serve as a front-end for a Moodle Learning Management System (LMS) backend.
 
 The primary goal is to provide a superior user experience for learners, abstracting away the complexity of the Moodle interface. It handles course browsing, progress tracking, and content consumption. It integrates with an external payment gateway and synchronizes all user and course data with a Moodle instance.
 
-For more details on the system architecture, see [NGLP_ARCHITECTURE.md](./NGLP_ARCHITECTURE.md).
+For more details on the system architecture, see [OLP_ARCHITECTURE.md](./OLP_ARCHITECTURE.md).
 For the development backlog, see [USER_STORIES.md](./USER_STORIES.md).
 
 ---
@@ -50,7 +50,7 @@ Create a `.env` file in the root of the project. Copy the contents of `.env.exam
 VITE_API_BASE_URL=http://localhost:3001/api
 
 # Backend & Database Configuration
-DATABASE_URL="postgresql://user:password@localhost:5432/nglp_db"
+DATABASE_URL="postgresql://user:password@localhost:5432/olp_db"
 
 # Moodle Integration
 MOODLE_API_URL="https://your-moodle-instance.com/webservice/rest/server.php"
@@ -68,10 +68,10 @@ STRIPE_SECRET_KEY="sk_test_..."
 You can use Docker to easily run a PostgreSQL database locally.
 
 ```sh
-docker run --name nglp-postgres -e POSTGRES_PASSWORD=password -e POSTGRES_USER=user -e POSTGRES_DB=nglp_db -p 5432:5432 -d postgres
+docker run --name olp-postgres -e POSTGRES_PASSWORD=password -e POSTGRES_USER=user -e POSTGRES_DB=olp_db -p 5432:5432 -d postgres
 ```
 
-This command will start a PostgreSQL container with the database `nglp_db`, user `user`, and password `password`, matching the `DATABASE_URL` in the `.env` template.
+This command will start a PostgreSQL container with the database `olp_db`, user `user`, and password `password`, matching the `DATABASE_URL` in the `.env` template.
 
 ### 4. Install Dependencies
 
@@ -103,7 +103,7 @@ The frontend will be available at `http://localhost:5173` (or another port if 51
 │   ├── pages/           # Page components for routing
 │   ├── services/        # API service definitions
 │   └── ...
-├── NGLP_ARCHITECTURE.md # System architecture document
+├── OLP_ARCHITECTURE.md # System architecture document
 ├── USER_STORIES.md      # Development backlog
 └── ...
 ```
