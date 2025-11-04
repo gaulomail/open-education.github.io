@@ -23,6 +23,7 @@ export const CourseEnrollment: React.FC<CourseEnrollmentProps> = ({
   onEnrollmentSuccess
 }) => {
   const [showPaymentForm, setShowPaymentForm] = useState(false);
+  const [showSummary, setShowSummary] = useState(false);
   const [enrollment, setEnrollment] = useState<EnrollmentData | null>(null);
   const [isCreatingEnrollment, setIsCreatingEnrollment] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -63,7 +64,7 @@ export const CourseEnrollment: React.FC<CourseEnrollmentProps> = ({
 
       if (response.success && response.enrollment) {
         setEnrollment(response.enrollment);
-        setShowPaymentForm(true);
+        setShowSummary(true);
         onEnrollmentSuccess?.(response.enrollment);
       } else {
         setError(response.error || 'Failed to create enrollment');
@@ -118,6 +119,59 @@ export const CourseEnrollment: React.FC<CourseEnrollmentProps> = ({
         onError={handlePaymentError}
         onCancel={handleCancel}
       />
+    );
+  }
+
+  // Order Summary Screen
+  if (showSummary && enrollment) {
+    return (
+      <Card className="w-full max-w-xl mx-auto">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold text-gray-900">Confirm your enrollment</CardTitle>
+          <CardDescription className="text-gray-600">Review the details below before continuing to secure payment.</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="bg-gray-50 rounded-lg p-4">
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-gray-600">Course</span>
+              <span className="font-medium text-gray-900">{course.name}</span>
+            </div>
+            <div className="flex items-center justify-between mt-2">
+              <span className="text-sm text-gray-600">Category</span>
+              <span className="font-medium text-gray-900">{course.category}</span>
+            </div>
+            <div className="flex items-center justify-between mt-2">
+              <span className="text-sm text-gray-600">Level</span>
+              <span className="font-medium text-gray-900 capitalize">{course.level}</span>
+            </div>
+            <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+              <span className="text-sm text-gray-600">Total</span>
+              <span className="text-xl font-bold text-gray-900">{formatCurrency(course.price, course.currency)}</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => {
+                setShowSummary(false);
+                setEnrollment(null);
+              }}
+            >
+              Back
+            </Button>
+            <Button
+              className="w-full bg-blue-600 hover:bg-blue-700"
+              onClick={() => setShowPaymentForm(true)}
+            >
+              Confirm & Pay
+            </Button>
+          </div>
+
+          <div className="text-xs text-gray-500 text-center">You will be redirected to PayFast to complete your payment securely.</div>
+        </CardContent>
+      </Card>
     );
   }
 

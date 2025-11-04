@@ -34,7 +34,7 @@ const PaymentSuccess = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Processing your payment...</p>
         </div>
       </div>
@@ -190,7 +190,7 @@ const PaymentSuccess = () => {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
+          <Button asChild size="lg" className="bg-purple-700 hover:bg-purple-800">
             <Link to="/courses">
               <BookOpen className="w-5 h-5 mr-2" />
               Browse More Courses
@@ -207,7 +207,7 @@ const PaymentSuccess = () => {
 
         {/* Support Information */}
         <div className="mt-12 text-center">
-          <div className="bg-blue-50 rounded-lg p-6 max-w-2xl mx-auto">
+          <div className="bg-purple-50 rounded-lg p-6 max-w-2xl mx-auto">
             <h3 className="font-medium text-gray-900 mb-2">Need Help?</h3>
             <p className="text-gray-600 mb-4">
               Our support team is here to help you get started with your course.

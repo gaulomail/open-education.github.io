@@ -39,14 +39,14 @@ const Contact = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "WhatsApp",
-      details: "+27 82 781 3032",
-      link: "https://wa.me/27827813032"
+      details: "+27 11 039 474",
+      link: "https://wa.me/27711039474"
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Office Line",
-      details: "+27 010 045 1055",
-      link: "tel:+27100451055"
+      details: "+27 11 039 474",
+      link: "tel:+27711039474"
     },
     {
       icon: <Clock className="w-6 h-6" />,
@@ -61,13 +61,17 @@ const Contact = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-white via-purple-100/20 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-purple-900">
+        <div className="absolute inset-0 bg-purple-900/60"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              Get in <span className="text-purple-600 font-semibold">Touch</span>
+            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-6 border border-white/20">
+              <span className="text-sm font-medium text-white/90">We're here to help</span>
+            </div>
+            <h1 className="text-5xl font-bold text-white mb-6">
+              Get in Touch
             </h1>
-            <p className="text-xl text-gray-700 font-normal mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-purple-100 font-normal mb-8 max-w-3xl mx-auto">
               Ready to start your AI learning journey? Contact our team for support, questions, or enrollment assistance.
             </p>
           </div>
@@ -75,7 +79,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-purple-50/30">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
@@ -83,27 +87,27 @@ const Contact = () => {
               <h2 className="text-3xl font-bold text-gray-900 mb-8">Contact Information</h2>
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
-                  <div key={index} className="group relative overflow-hidden bg-white rounded-2xl border-0 shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
+                  <div key={index} className="relative bg-white rounded-xl border border-gray-200 shadow-sm">
                     {/* Gradient overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
                     
                     <div className="relative flex items-start space-x-4 p-6">
-                      <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl p-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <div className="bg-purple-700 rounded-lg p-3 text-white">
                         <div className="text-white">
                           {info.icon}
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">{info.title}</h3>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">{info.title}</h3>
                         {info.link ? (
                           <a 
                             href={info.link} 
-                            className="text-gray-700 font-medium hover:text-purple-600 transition-colors duration-300 inline-flex items-center gap-2 group/link"
+                            className="text-gray-700 font-medium hover:text-gray-900 transition-colors duration-200 inline-flex items-center gap-2"
                             target={info.link.startsWith('http') ? '_blank' : undefined}
                             rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
                           >
                             {info.details}
-                            <div className="w-0 group-hover/link:w-2 h-0.5 bg-purple-600 transition-all duration-300"></div>
+                            
                           </a>
                         ) : (
                           <p className="text-gray-700 font-medium">{info.details}</p>
@@ -116,27 +120,27 @@ const Contact = () => {
 
               <div className="mt-12">
                 <h3 className="text-2xl font-semibold text-gray-900 mb-6">Why Contact Us?</h3>
-                <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-6 border border-purple-100 shadow-lg">
-                  <ul className="space-y-4 text-gray-700 font-medium">
-                    <li className="flex items-center group">
-                      <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full mr-4 group-hover:scale-125 transition-transform duration-300"></div>
-                      <span className="group-hover:text-purple-700 transition-colors duration-300">Course enrollment assistance and guidance</span>
+                <div className="bg-white rounded-xl p-6 border border-gray-200">
+                  <ul className="space-y-3 text-gray-700 font-medium">
+                    <li className="flex items-center">
+                      <div className="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
+                      <span>Course enrollment assistance and guidance</span>
                     </li>
-                    <li className="flex items-center group">
-                      <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full mr-4 group-hover:scale-125 transition-transform duration-300"></div>
-                      <span className="group-hover:text-purple-700 transition-colors duration-300">Technical support and learning resources</span>
+                    <li className="flex items-center">
+                      <div className="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
+                      <span>Technical support and learning resources</span>
                     </li>
-                    <li className="flex items-center group">
-                      <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full mr-4 group-hover:scale-125 transition-transform duration-300"></div>
-                      <span className="group-hover:text-purple-700 transition-colors duration-300">Corporate training solutions and partnerships</span>
+                    <li className="flex items-center">
+                      <div className="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
+                      <span>Corporate training solutions and partnerships</span>
                     </li>
-                    <li className="flex items-center group">
-                      <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full mr-4 group-hover:scale-125 transition-transform duration-300"></div>
-                      <span className="group-hover:text-purple-700 transition-colors duration-300">Programme verification and queries</span>
+                    <li className="flex items-center">
+                      <div className="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
+                      <span>Programme verification and queries</span>
                     </li>
-                    <li className="flex items-center group">
-                      <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full mr-4 group-hover:scale-125 transition-transform duration-300"></div>
-                      <span className="group-hover:text-purple-700 transition-colors duration-300">General inquiries about our AI programs</span>
+                    <li className="flex items-center">
+                      <div className="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
+                      <span>General inquiries about our AI programs</span>
                     </li>
                   </ul>
                 </div>
@@ -144,10 +148,7 @@ const Contact = () => {
             </div>
 
             {/* Contact Form */}
-            <div className="relative overflow-hidden bg-white rounded-3xl p-8 border-0 shadow-2xl shadow-purple-500/10">
-              {/* Background gradient decoration */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-indigo-400/20 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-pink-400/20 to-purple-400/20 rounded-full blur-2xl"></div>
+            <div className="relative bg-white rounded-xl p-8 border border-gray-200 shadow-sm">
               
               <div className="relative">
                 <h2 className="text-3xl font-bold text-gray-900 mb-8">Send us a Message</h2>
@@ -210,7 +211,7 @@ const Contact = () => {
 
                   <Button 
                     type="submit" 
-                    className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-purple-500/20 py-4 text-lg"
+                    className="w-full bg-purple-700 hover:bg-purple-800 text-white font-semibold rounded-lg focus:outline-none py-4 text-lg"
                   >
                     <Send className="mr-2 h-5 w-5" />
                     Send Message
@@ -223,52 +224,24 @@ const Contact = () => {
       </section>
 
       {/* Quick Actions Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-purple-50/30">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-12">Quick Actions</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <a
-              href="https://wa.me/27827813032"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative overflow-hidden bg-gradient-to-br from-green-500 to-emerald-600 text-white p-8 rounded-3xl shadow-xl hover:shadow-2xl hover:shadow-green-500/30 transition-all duration-500 transform hover:-translate-y-3"
-            >
-              {/* Background decoration */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></div>
-              <div className="relative">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">💬</div>
-                <h3 className="text-xl font-bold mb-3">WhatsApp Us</h3>
-                <p className="text-green-100 font-medium">Get instant support via WhatsApp</p>
-                <div className="mt-4 w-0 group-hover:w-8 h-0.5 bg-white transition-all duration-300"></div>
-              </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            <a href="https://wa.me/27711039474" target="_blank" rel="noopener noreferrer" className="block bg-white border border-gray-200 rounded-xl p-6 text-left shadow-sm hover:shadow transition-shadow">
+              <div className="text-2xl mb-2">💬</div>
+              <h3 className="text-lg font-semibold mb-1">WhatsApp Us</h3>
+              <p className="text-gray-600">Get instant support via WhatsApp</p>
             </a>
-            
-            <a
-              href="mailto:hello@openedai.com"
-              className="group relative overflow-hidden bg-gradient-to-br from-purple-500 to-indigo-600 text-white p-8 rounded-3xl shadow-xl hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-500 transform hover:-translate-y-3"
-            >
-              {/* Background decoration */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></div>
-              <div className="relative">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">✉️</div>
-                <h3 className="text-xl font-bold mb-3">Email Us</h3>
-                <p className="text-purple-100 font-medium">Send us a detailed email inquiry</p>
-                <div className="mt-4 w-0 group-hover:w-8 h-0.5 bg-white transition-all duration-300"></div>
-              </div>
+            <a href="mailto:hello@openedai.com" className="block bg-white border border-gray-200 rounded-xl p-6 text-left shadow-sm hover:shadow transition-shadow">
+              <div className="text-2xl mb-2">✉️</div>
+              <h3 className="text-lg font-semibold mb-1">Email Us</h3>
+              <p className="text-gray-600">Send us a detailed email inquiry</p>
             </a>
-            
-            <Link
-              to="/programmes"
-              className="group relative overflow-hidden bg-gradient-to-br from-pink-500 to-rose-600 text-white p-8 rounded-3xl shadow-xl hover:shadow-2xl hover:shadow-pink-500/30 transition-all duration-500 transform hover:-translate-y-3"
-            >
-              {/* Background decoration */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></div>
-              <div className="relative">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🎓</div>
-                <h3 className="text-xl font-bold mb-3">Browse Courses</h3>
-                <p className="text-pink-100 font-medium">Explore our programmes</p>
-                <div className="mt-4 w-0 group-hover:w-8 h-0.5 bg-white transition-all duration-300"></div>
-              </div>
+            <Link to="/programmes" className="block bg-white border border-gray-200 rounded-xl p-6 text-left shadow-sm hover:shadow transition-shadow">
+              <div className="text-2xl mb-2">🎓</div>
+              <h3 className="text-lg font-semibold mb-1">Browse Courses</h3>
+              <p className="text-gray-600">Explore our programmes</p>
             </Link>
           </div>
         </div>

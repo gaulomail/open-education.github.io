@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { GraduationCap, CheckCircle, ArrowRight, Sparkles, Users, TrendingUp, Shield, Globe, Search, Filter, Target, Zap, Mail, Phone, User, Calendar, CreditCard } from 'lucide-react';
+import { GraduationCap, CheckCircle, ArrowRight, Users, TrendingUp, Shield, Globe, Search, Filter, Target, Zap, Mail, Phone, User, Calendar, CreditCard } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { payfastService, type EnrollmentData } from '@/services/payfast';
@@ -19,7 +19,7 @@ const qualificationsData = [
     credits: 120,
     category: 'Artificial Intelligence',
     duration: '12-18 months',
-    price: 'R15,999',
+    price: 'R25,000',
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop&crop=center',
     isActive: true,
     learningOutcomes: [
@@ -101,6 +101,15 @@ const Qualifications = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [qualificationPlanById, setQualificationPlanById] = useState<Record<string, 'once_off' | 'monthly_10' | 'six_months'>>({});
+  const [showSummary, setShowSummary] = useState(false);
+
+  const parsePriceToNumber = (priceStr: string): number => {
+    // Remove non-digits except dots and commas, then normalize
+    const normalized = priceStr.replace(/[^0-9]/g, '');
+    return Number(normalized);
+  };
+  const formatZAR = (amount: number) => new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR', minimumFractionDigits: 0 }).format(Math.round(amount));
 
   // Filter qualifications based on search and filters
   useEffect(() => {
@@ -143,6 +152,9 @@ const Qualifications = () => {
   const handleEnroll = (qualification: any) => {
     setSelectedQualification(qualification);
     setIsEnrollmentOpen(true);
+    const current = qualificationPlanById[qualification.id] ?? 'once_off';
+    // @ts-ignore - creating local state dynamically if not exists
+    setQualificationPlanById(prev => ({ ...prev, [qualification.id]: current }));
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -152,23 +164,23 @@ const Qualifications = () => {
     }));
   };
 
-  const handleSubmitEnrollment = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!enrollmentForm.firstName || !enrollmentForm.lastName || !enrollmentForm.email) {
-      alert('Please fill in all required fields');
-      return;
-    }
-
+  const submitEnrollment = async () => {
     setIsSubmitting(true);
-    
     try {
-      // Create enrollment data for PayFast
+      // Create enrollment data for PayFast using selected plan for amount
+      const basePrice = parsePriceToNumber(selectedQualification.price);
+      const plan = qualificationPlanById[selectedQualification.id] ?? 'once_off';
+      const onceOff = Math.round(basePrice * 0.9);
+      const monthly = Math.round(basePrice / 10);
+      const deposit = 5000;
+      const amountToCharge = plan === 'once_off' ? onceOff : plan === 'monthly_10' ? monthly : deposit;
+
       const enrollmentData: EnrollmentData = {
         id: `qualification-${Date.now()}`,
         userId: 'user-1', // Default user for demo
         courseId: selectedQualification.id,
         courseName: selectedQualification.title,
-        amount: parseFloat(selectedQualification.price.replace('R', '').replace(',', '')),
+        amount: amountToCharge,
         currency: 'ZAR',
         firstName: enrollmentForm.firstName,
         lastName: enrollmentForm.lastName,
@@ -199,6 +211,13 @@ const Qualifications = () => {
         }
       });
 
+      // Attach plan metadata (if supported)
+      const planField = document.createElement('input');
+      planField.type = 'hidden';
+      planField.name = 'custom_str1';
+      planField.value = `plan:${plan}`;
+      payfastForm.appendChild(planField);
+
 
 
       // Submit the form to PayFast
@@ -226,6 +245,16 @@ const Qualifications = () => {
     }
   };
 
+  const handleSubmitEnrollment = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!enrollmentForm.firstName || !enrollmentForm.lastName || !enrollmentForm.email) {
+      alert('Please fill in all required fields');
+      return;
+    }
+    // Show summary first; confirmation will call submitEnrollment
+    setShowSummary(true);
+  };
+
   const handleCloseEnrollment = () => {
     setIsEnrollmentOpen(false);
     setSelectedQualification(null);
@@ -244,25 +273,22 @@ const Qualifications = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-indigo-600">
+      <div className="relative overflow-hidden bg-purple-900">
         {/* Background Pattern */}
-        <div className="absolute inset-0 bg-white/10 opacity-30"></div>
+        <div className="absolute inset-0 bg-purple-900/60"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <Sparkles className="w-4 h-4 text-yellow-300" />
+            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-6 border border-white/20">
               <span className="text-sm font-medium text-white/90">Premium Learning Experience</span>
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
               Master Your Skills with
-              <span className="block text-yellow-300">
-                Our Qualifications
-              </span>
+              <span className="block text-white">Our Qualifications</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-indigo-100 mb-10 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-purple-100 mb-10 max-w-4xl mx-auto leading-relaxed">
               Discover comprehensive training programs designed to accelerate your career growth. 
               From beginner to advanced, we have the perfect qualification for every skill level.
             </p>
@@ -304,7 +330,7 @@ const Qualifications = () => {
 
       {/* Search and Filters Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
             {/* Search */}
             <div className="lg:col-span-2">
@@ -315,7 +341,7 @@ const Qualifications = () => {
                   placeholder="Search for qualifications, skills, or topics..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 h-12 border-gray-200 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl"
+                  className="pl-10 h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg"
                 />
               </div>
             </div>
@@ -323,7 +349,7 @@ const Qualifications = () => {
             {/* Category Filter */}
             <div>
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="h-12 border-gray-200 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl">
+                <SelectTrigger className="h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
@@ -339,7 +365,7 @@ const Qualifications = () => {
             {/* Level Filter */}
             <div>
               <Select value={selectedLevel} onValueChange={setSelectedLevel}>
-                <SelectTrigger className="h-12 border-gray-200 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl">
+                <SelectTrigger className="h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg">
                   <SelectValue placeholder="Level" />
                 </SelectTrigger>
                 <SelectContent>
@@ -361,7 +387,7 @@ const Qualifications = () => {
                 <span>Showing {filteredQualifications.length} of {qualificationsData.length} qualifications</span>
               </div>
               {(searchQuery || selectedCategory !== 'all' || selectedLevel !== 'all') && (
-                <Badge variant="secondary" className="bg-indigo-50 text-indigo-700 border-indigo-200">
+                <Badge variant="secondary" className="bg-purple-50 text-purple-700 border-purple-200">
                   <Filter className="w-3 h-3 mr-1" />
                   Filters Active
                 </Badge>
@@ -376,7 +402,7 @@ const Qualifications = () => {
                   setSelectedCategory('all');
                   setSelectedLevel('all');
                 }}
-                className="border-gray-200 hover:bg-gray-50 rounded-xl"
+                className="border-gray-200 hover:bg-gray-50 rounded-lg"
               >
                 <Zap className="w-4 h-4 mr-2" />
                 Clear Filters
@@ -400,24 +426,24 @@ const Qualifications = () => {
         {/* Qualifications Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredQualifications.map((qualification, index) => (
-            <div key={qualification.id} className="bg-white rounded-3xl shadow-xl border-0 overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/20 hover:-translate-y-2 transition-all duration-500 group">
+            <div key={qualification.id} className="relative bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-md hover:-translate-y-1 group">
               {/* Qualification Image */}
-              <div className="relative h-48 bg-gradient-to-br from-indigo-600 to-purple-600 overflow-hidden">
+              <div className="relative h-48 bg-purple-700/10 overflow-hidden">
                 <img 
                   src={qualification.image} 
                   alt={qualification.title} 
-                  className="w-full h-full object-cover mix-blend-overlay group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 
                 {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-70 group-hover:opacity-80 transition-opacity"></div>
                 
                 {/* Badges */}
                 <div className="absolute top-4 left-4 right-4 flex justify-between">
-                  <Badge className="bg-white/20 backdrop-blur-sm text-white border-white/30 border-0 px-3 py-1.5 text-sm font-medium">
+                  <Badge className="bg-white/90 text-gray-900 border border-white px-3 py-1.5 text-xs font-semibold">
                     {qualification.level}
                   </Badge>
-                  <Badge className="bg-emerald-500 text-white border-0 px-3 py-1.5 text-sm font-medium shadow-lg">
+                  <Badge className="bg-emerald-500 text-white border-0 px-3 py-1.5 text-xs font-semibold shadow">
                     {qualification.credits} Credits
                   </Badge>
                 </div>
@@ -425,34 +451,85 @@ const Qualifications = () => {
               
               {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 leading-tight group-hover:text-indigo-600 transition-colors duration-300">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 leading-tight group-hover:text-purple-700 transition-colors">
                   {qualification.title}
                 </h3>
                 
-                <p className="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
+                <p className="text-gray-600 text-sm mb-5 line-clamp-3 leading-relaxed">
                   {qualification.description}
                 </p>
                 
+                {/* Payment Options */}
+                <div className="mb-4">
+                  <div className="text-sm font-semibold text-gray-900 mb-2">Choose a payment option</div>
+                  {(() => {
+                    const base = parsePriceToNumber(qualification.price); // e.g. 15999
+                    const onceOff = base * 0.9; // 10% discount
+                    const monthly = base / 10; // 10 installments
+                    const deposit = 5000; // fixed per spec
+                    const remainder = Math.max(base - deposit, 0);
+                    const sixInstall = remainder / 5; // 5 installments
+                    const selected = qualificationPlanById[qualification.id] ?? 'once_off';
+                    return (
+                      <>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
+                          <button
+                            type="button"
+                            className={`text-xs rounded-md border px-3 py-2 text-left transition-colors ${selected === 'once_off' ? 'border-purple-600 bg-purple-50 text-purple-700' : 'border-gray-200 hover:bg-gray-50'}`}
+                            onClick={() => setQualificationPlanById(prev => ({ ...prev, [qualification.id]: 'once_off' }))}
+                          >
+                            <div className="font-semibold">Once-off</div>
+                            <div>{formatZAR(onceOff)}</div>
+                          </button>
+                          <button
+                            type="button"
+                            className={`text-xs rounded-md border px-3 py-2 text-left transition-colors ${selected === 'monthly_10' ? 'border-purple-600 bg-purple-50 text-purple-700' : 'border-gray-200 hover:bg-gray-50'}`}
+                            onClick={() => setQualificationPlanById(prev => ({ ...prev, [qualification.id]: 'monthly_10' }))}
+                          >
+                            <div className="font-semibold">Monthly (10x)</div>
+                            <div>10 × {formatZAR(monthly)}</div>
+                          </button>
+                          <button
+                            type="button"
+                            className={`text-xs rounded-md border px-3 py-2 text-left transition-colors ${selected === 'six_months' ? 'border-purple-600 bg-purple-50 text-purple-700' : 'border-gray-200 hover:bg-gray-50'}`}
+                            onClick={() => setQualificationPlanById(prev => ({ ...prev, [qualification.id]: 'six_months' }))}
+                          >
+                            <div className="font-semibold">6 Months</div>
+                            <div>Dep {formatZAR(deposit)} + 5 × {formatZAR(sixInstall)}</div>
+                          </button>
+                        </div>
+                        <div className="flex items-center justify-between text-sm text-gray-700">
+                          <span>Selected</span>
+                          <span className="font-semibold">
+                            {selected === 'once_off' && formatZAR(onceOff)}
+                            {selected === 'monthly_10' && `10 × ${formatZAR(monthly)}`}
+                            {selected === 'six_months' && `Dep ${formatZAR(deposit)} + 5 × ${formatZAR(sixInstall)}`}
+                          </span>
+                        </div>
+                      </>
+                    );
+                  })()}
+                </div>
+
                 {/* Details */}
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <div className="w-6 h-6 bg-indigo-100 rounded-lg flex items-center justify-center">
-                      <GraduationCap className="w-3 h-3 text-indigo-600" />
+                <div className="grid grid-cols-2 gap-3 mb-5 text-sm">
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <div className="p-1.5 bg-purple-50 rounded-md">
+                      <GraduationCap className="w-4 h-4 text-purple-600" />
                     </div>
                     <span>{qualification.category}</span>
                   </div>
-                  
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <div className="w-6 h-6 bg-amber-100 rounded-lg flex items-center justify-center">
-                      <CheckCircle className="w-3 h-3 text-amber-600" />
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <div className="p-1.5 bg-amber-50 rounded-md">
+                      <CheckCircle className="w-4 h-4 text-amber-600" />
                     </div>
                     <span>{qualification.duration}</span>
                   </div>
                 </div>
                 
                 {/* Learning Outcomes */}
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Key Learning Outcomes:</h4>
+                <div className="mb-5">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Key Learning Outcomes</h4>
                   <div className="space-y-1">
                     {qualification.learningOutcomes.slice(0, 3).map((outcome, idx) => (
                       <div key={idx} className="flex items-center gap-2 text-xs text-gray-600">
@@ -476,7 +553,7 @@ const Qualifications = () => {
                   
                   <Button 
                     onClick={() => handleEnroll(qualification)}
-                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                    className="w-full bg-purple-700 hover:bg-purple-800 text-white font-semibold py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow"
                   >
                     <GraduationCap className="w-4 h-4 mr-2" />
                     Enroll Now
@@ -558,7 +635,48 @@ const Qualifications = () => {
                 </div>
               </div>
 
+              {/* Payment Plan (Modal) */}
+              <div>
+                {(() => {
+                  const base = parsePriceToNumber(selectedQualification.price);
+                  const onceOff = base * 0.9;
+                  const monthly = base / 10;
+                  const deposit = 5000;
+                  const remainder = Math.max(base - deposit, 0);
+                  const sixInstall = remainder / 5;
+                  const selected = qualificationPlanById[selectedQualification.id] ?? 'once_off';
+                  return (
+                    <div className="space-y-2">
+                      <div className="text-sm font-semibold text-gray-900">Choose a payment option</div>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <button type="button" className={`text-xs rounded-md border px-3 py-2 text-left transition-colors ${selected === 'once_off' ? 'border-purple-600 bg-purple-50 text-purple-700' : 'border-gray-200 hover:bg-gray-50'}`} onClick={() => setQualificationPlanById(prev => ({ ...prev, [selectedQualification.id]: 'once_off' }))}>
+                          <div className="font-semibold">Once-off</div>
+                          <div>{formatZAR(onceOff)}</div>
+                        </button>
+                        <button type="button" className={`text-xs rounded-md border px-3 py-2 text-left transition-colors ${selected === 'monthly_10' ? 'border-purple-600 bg-purple-50 text-purple-700' : 'border-gray-200 hover:bg-gray-50'}`} onClick={() => setQualificationPlanById(prev => ({ ...prev, [selectedQualification.id]: 'monthly_10' }))}>
+                          <div className="font-semibold">Monthly (10x)</div>
+                          <div>10 × {formatZAR(monthly)}</div>
+                        </button>
+                        <button type="button" className={`text-xs rounded-md border px-3 py-2 text-left transition-colors ${selected === 'six_months' ? 'border-purple-600 bg-purple-50 text-purple-700' : 'border-gray-200 hover:bg-gray-50'}`} onClick={() => setQualificationPlanById(prev => ({ ...prev, [selectedQualification.id]: 'six_months' }))}>
+                          <div className="font-semibold">6 Months</div>
+                          <div>Dep {formatZAR(deposit)} + 5 × {formatZAR(sixInstall)}</div>
+                        </button>
+                      </div>
+                      <div className="flex items-center justify-between text-sm text-gray-700">
+                        <span>Selected</span>
+                        <span className="font-semibold">
+                          {selected === 'once_off' && formatZAR(onceOff)}
+                          {selected === 'monthly_10' && `10 × ${formatZAR(monthly)}`}
+                          {selected === 'six_months' && `Dep ${formatZAR(deposit)} + 5 × ${formatZAR(sixInstall)}`}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+
               {/* Enrollment Form */}
+              {!showSummary && (
               <form onSubmit={handleSubmitEnrollment} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
@@ -682,21 +800,12 @@ const Qualifications = () => {
                 {/* Action Buttons */}
                 <div className="flex gap-3 pt-4">
                   <Button
-                    type="submit"
+                    type="button"
                     disabled={isSubmitting}
+                    onClick={handleSubmitEnrollment}
                     className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                        Processing...
-                      </>
-                    ) : (
-                      <>
-                        <CreditCard className="w-4 h-4 mr-2" />
-                        Proceed to Payment
-                      </>
-                    )}
+                    Review & Continue
                   </Button>
                   
                   <Button
@@ -709,6 +818,52 @@ const Qualifications = () => {
                   </Button>
                 </div>
               </form>
+              )}
+
+              {/* Summary Step */}
+              {showSummary && (
+                <div className="mt-6 space-y-4">
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-600">Qualification</span>
+                      <span className="font-medium text-gray-900">{selectedQualification.title}</span>
+                    </div>
+                    {(() => {
+                      const base = parsePriceToNumber(selectedQualification.price);
+                      const plan = qualificationPlanById[selectedQualification.id] ?? 'once_off';
+                      const onceOff = base * 0.9;
+                      const monthly = base / 10;
+                      const deposit = 5000;
+                      const remainder = Math.max(base - deposit, 0);
+                      const sixInstall = remainder / 5;
+                      const label = plan === 'once_off' ? 'Once-off (10% discount)' : plan === 'monthly_10' ? 'Monthly (10x)' : '6 Months';
+                      const value = plan === 'once_off' ? formatZAR(onceOff) : plan === 'monthly_10' ? `10 × ${formatZAR(monthly)}` : `Dep ${formatZAR(deposit)} + 5 × ${formatZAR(sixInstall)}`;
+                      return (
+                        <>
+                          <div className="flex items-center justify-between mt-2">
+                            <span className="text-sm text-gray-600">Payment Option</span>
+                            <span className="font-medium text-gray-900">{label}</span>
+                          </div>
+                          <div className="flex items-center justify-between mt-2">
+                            <span className="text-sm text-gray-600">Amount due now</span>
+                            <span className="text-lg font-bold text-gray-900">
+                              {plan === 'once_off' ? formatZAR(onceOff) : plan === 'monthly_10' ? formatZAR(monthly) : formatZAR(deposit)}
+                            </span>
+                          </div>
+                          <div className="text-xs text-gray-500 mt-1 text-right">{value}</div>
+                        </>
+                      );
+                    })()}
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Button variant="outline" onClick={() => setShowSummary(false)}>Back</Button>
+                    <Button className="bg-indigo-600 hover:bg-indigo-700" disabled={isSubmitting} onClick={submitEnrollment}>
+                      {isSubmitting ? 'Processing…' : 'Confirm & Pay'}
+                    </Button>
+                  </div>
+                  <div className="text-xs text-gray-500 text-center">You will be redirected to PayFast to complete your payment securely.</div>
+                </div>
+              )}
             </div>
           )}
         </DialogContent>

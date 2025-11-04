@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Building, CheckCircle, Zap, Sparkles, Users, TrendingUp, Award, Globe, ArrowRight, Target, Filter, Search, X, Mail, Phone, MessageSquare } from 'lucide-react';
+import { Building, CheckCircle, Zap, Users, TrendingUp, Award, Globe, ArrowRight, Target, Filter, Search, X, Mail, Phone, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
@@ -157,14 +157,13 @@ const CorporateTraining = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-indigo-600">
+      <div className="relative overflow-hidden bg-purple-900">
         {/* Background Pattern */}
-        <div className="absolute inset-0 bg-white/10 opacity-30"></div>
+        <div className="absolute inset-0 bg-purple-900/60"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <Sparkles className="w-4 h-4 text-yellow-300" />
+            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-6 border border-white/20">
               <span className="text-sm font-medium text-white/90">Premium Learning Experience</span>
             </div>
             
@@ -175,7 +174,7 @@ const CorporateTraining = () => {
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-indigo-100 mb-10 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-purple-100 mb-10 max-w-4xl mx-auto leading-relaxed">
               Discover comprehensive training programs designed to accelerate your career growth. 
               From beginner to advanced, we have the perfect corporate training for every skill level.
             </p>
@@ -217,7 +216,7 @@ const CorporateTraining = () => {
 
       {/* Search and Filters Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
             {/* Search */}
             <div className="lg:col-span-2">
@@ -228,7 +227,7 @@ const CorporateTraining = () => {
                   placeholder="Search for training categories, skills, or topics..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 h-12 border-gray-200 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl"
+                  className="pl-10 h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg"
                 />
               </div>
             </div>
@@ -236,7 +235,7 @@ const CorporateTraining = () => {
             {/* Category Filter */}
             <div>
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="h-12 border-gray-200 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl">
+                <SelectTrigger className="h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg">
                   <SelectValue placeholder="All Categories" />
                 </SelectTrigger>
                 <SelectContent>
@@ -252,7 +251,7 @@ const CorporateTraining = () => {
             {/* Level Filter */}
             <div>
               <Select value={selectedLevel} onValueChange={setSelectedLevel}>
-                <SelectTrigger className="h-12 border-gray-200 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl">
+                <SelectTrigger className="h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg">
                   <SelectValue placeholder="All Levels" />
                 </SelectTrigger>
                 <SelectContent>
@@ -273,7 +272,7 @@ const CorporateTraining = () => {
                 <span>Showing {filteredCategories.length} of {corporateTrainingData.length} training categories</span>
               </div>
               {(searchQuery || selectedCategory !== 'all' || selectedLevel !== 'all') && (
-                <Badge variant="secondary" className="bg-indigo-50 text-indigo-700 border-indigo-200">
+                <Badge variant="secondary" className="bg-purple-50 text-purple-700 border-purple-200">
                   <Filter className="w-3 h-3 mr-1" />
                   Filters Active
                 </Badge>
@@ -288,7 +287,7 @@ const CorporateTraining = () => {
                   setSelectedCategory('all');
                   setSelectedLevel('all');
                 }}
-                className="border-gray-200 hover:bg-gray-50 rounded-xl"
+                className="border-gray-200 hover:bg-gray-50 rounded-lg"
               >
                 <Zap className="w-4 h-4 mr-2" />
                 Clear Filters
@@ -311,17 +310,17 @@ const CorporateTraining = () => {
         
         <div className="grid md:grid-cols-2 gap-8">
           {filteredCategories.map((category, index) => (
-            <div key={index} className="bg-white rounded-3xl shadow-xl border-0 overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/20 hover:-translate-y-2 transition-all duration-500 group flex flex-col">
+            <div key={index} className="relative bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-md hover:-translate-y-1 group flex flex-col">
               {/* Category Image with Gradient Overlay */}
-              <div className="relative h-64 bg-gradient-to-br from-indigo-600 to-purple-600 overflow-hidden flex-shrink-0">
+              <div className="relative h-64 bg-purple-700/10 overflow-hidden flex-shrink-0">
                 <img 
                   src={category.imageUrl} 
                   alt={category.category} 
-                  className="w-full h-full object-cover mix-blend-overlay group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 
                 {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-70 group-hover:opacity-80 transition-opacity"></div>
                 
                 {/* Category Title Overlay */}
                 <div className="absolute bottom-6 left-6 right-6">
@@ -331,10 +330,10 @@ const CorporateTraining = () => {
                   
                   {/* Badges Row */}
                   <div className="flex items-center gap-3">
-                    <Badge className="bg-white/20 backdrop-blur-sm text-white border-white/30 border-0 px-3 py-1.5 text-sm font-medium">
+                    <Badge className="bg-white/90 text-gray-900 border border-white px-3 py-1.5 text-xs font-semibold">
                       {category.level}
                     </Badge>
-                    <Badge className="bg-emerald-500 text-white border-0 px-3 py-1.5 text-sm font-medium shadow-lg">
+                    <Badge className="bg-emerald-500 text-white border-0 px-3 py-1.5 text-xs font-semibold shadow">
                       {category.courseCount} Courses
                     </Badge>
                   </div>
@@ -379,10 +378,10 @@ const CorporateTraining = () => {
                 
                 {/* CTA Button - Always at bottom */}
                 <div className="pt-6 border-t border-gray-100 mt-auto">
-                                     <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-indigo-500/25 transition-all duration-300 transform hover:-translate-y-1 group-hover:scale-[1.02]" onClick={handleOpenQuoteModal}>
+                  <Button className="w-full bg-purple-700 hover:bg-purple-800 text-white font-semibold py-4 px-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300" onClick={handleOpenQuoteModal}>
                     <Building className="w-5 h-5 mr-3" />
                     Get Quote for {category.category}
-                    <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
+                    <ArrowRight className="w-5 h-5 ml-3" />
                   </Button>
                 </div>
               </div>

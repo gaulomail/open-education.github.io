@@ -12,6 +12,9 @@ import Qualifications from "./pages/Qualifications"; // Added Qualifications pag
 import Courses from "./pages/Courses"; // Added Courses page with PayFast integration
 import PaymentSuccess from "./pages/PaymentSuccess"; // Added Payment Success page
 import PaymentCancelled from "./pages/PaymentCancelled"; // Added Payment Cancelled page
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import CookiePolicy from "./pages/CookiePolicy";
 import TestPage from "./pages/TestPage"; // Added Test page for debugging
 import TestUpload from "./pages/TestUpload"; // Added TestUpload page for file upload testing
 // import About from "./pages/About"; // Removed About page import
@@ -36,6 +39,9 @@ const App = () => (
           <Route path="/courses" element={<Courses />} /> {/* Added Courses route with PayFast integration */}
           <Route path="/payment/success" element={<PaymentSuccess />} /> {/* Added Payment Success route */}
           <Route path="/payment/cancelled" element={<PaymentCancelled />} /> {/* Added Payment Cancelled route */}
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
           <Route path="/test" element={<TestPage />} /> {/* Added Test route for debugging */}
           <Route path="/test-upload" element={<TestUpload />} /> {/* Added route for file upload testing */}
           <Route path="/contact" element={<Contact />} />

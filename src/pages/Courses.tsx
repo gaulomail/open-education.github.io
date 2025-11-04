@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { BookOpen, Clock, Star, Search, Filter, Users, TrendingUp, Sparkles, Target, Award, Zap } from 'lucide-react';
+import { BookOpen, Clock, Star, Search, Filter, Users, TrendingUp, Target, Award, Zap } from 'lucide-react';
 import { enrollmentService, type Course } from '@/services/enrollment';
 import { CourseEnrollment } from '@/components/CourseEnrollment';
 import { type EnrollmentData } from '@/services/payfast';
@@ -122,31 +122,28 @@ const Courses = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-indigo-600">
+      <div className="relative overflow-hidden bg-purple-900">
         {/* Background Pattern */}
-        <div className="absolute inset-0 bg-white/10 opacity-30"></div>
+        <div className="absolute inset-0 bg-purple-900/60"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <Sparkles className="w-4 h-4 text-yellow-300" />
+            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-6 border border-white/20">
               <span className="text-sm font-medium text-white/90">Premium Learning Experience</span>
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
               Master Your Skills with
-              <span className="block text-yellow-300">
-                Our Courses
-              </span>
+              <span className="block text-white">Our Courses</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-indigo-100 mb-10 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-purple-100 mb-10 max-w-4xl mx-auto leading-relaxed">
               Discover comprehensive training programs designed to accelerate your career growth. 
               From beginner to advanced, we have the perfect course for every skill level.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white/20">
+              <div className="flex items-center gap-3 bg-white/10 rounded-xl px-6 py-4 border border-white/20">
                 <div className="p-2 bg-white/20 rounded-xl">
                   <BookOpen className="w-6 h-6 text-white" />
                 </div>
@@ -156,7 +153,7 @@ const Courses = () => {
                 </div>
               </div>
               
-              <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white/20">
+              <div className="flex items-center gap-3 bg-white/10 rounded-xl px-6 py-4 border border-white/20">
                 <div className="p-2 bg-white/20 rounded-xl">
                   <Users className="w-6 h-6 text-white" />
                 </div>
@@ -166,7 +163,7 @@ const Courses = () => {
                 </div>
               </div>
               
-              <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white/20">
+              <div className="flex items-center gap-3 bg-white/10 rounded-xl px-6 py-4 border border-white/20">
                 <div className="p-2 bg-white/20 rounded-xl">
                   <TrendingUp className="w-6 h-6 text-white" />
                 </div>
@@ -182,7 +179,7 @@ const Courses = () => {
       
       {/* Search and Filters Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
             {/* Search */}
             <div className="lg:col-span-2">
@@ -193,7 +190,7 @@ const Courses = () => {
                   placeholder="Search for courses, skills, or topics..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 h-12 border-gray-200 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl"
+                  className="pl-10 h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg"
                 />
               </div>
             </div>
@@ -201,7 +198,7 @@ const Courses = () => {
             {/* Category Filter */}
             <div>
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="h-12 border-gray-200 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl">
+                <SelectTrigger className="h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
@@ -217,7 +214,7 @@ const Courses = () => {
             {/* Level Filter */}
             <div>
               <Select value={selectedLevel} onValueChange={setSelectedLevel}>
-                <SelectTrigger className="h-12 border-gray-200 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl">
+                <SelectTrigger className="h-12 border-gray-200 focus:border-purple-500 focus:ring-purple-500 rounded-lg">
                   <SelectValue placeholder="Level" />
                 </SelectTrigger>
                 <SelectContent>
@@ -239,7 +236,7 @@ const Courses = () => {
                 <span>Showing {filteredCourses.length} of {courses.length} courses</span>
               </div>
               {(searchQuery || selectedCategory !== 'all' || selectedLevel !== 'all') && (
-                <Badge variant="secondary" className="bg-indigo-50 text-indigo-700 border-indigo-200">
+                <Badge variant="secondary" className="bg-purple-50 text-purple-700 border-purple-200">
                   <Filter className="w-3 h-3 mr-1" />
                   Filters Active
                 </Badge>
@@ -254,7 +251,7 @@ const Courses = () => {
                   setSelectedCategory('all');
                   setSelectedLevel('all');
                 }}
-                className="border-gray-200 hover:bg-gray-50 rounded-xl"
+                className="border-gray-200 hover:bg-gray-50 rounded-lg"
               >
                 <Zap className="w-4 h-4 mr-2" />
                 Clear Filters
@@ -269,45 +266,46 @@ const Courses = () => {
         {/* Courses Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredCourses.map(course => (
-            <Card key={course.id} className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white hover:bg-gray-50 hover:scale-[1.02] overflow-hidden rounded-2xl">
+            <Card key={course.id} className="group border border-gray-200 bg-white overflow-hidden rounded-xl shadow-sm">
                               {/* Course Image */}
                 {course.image && (
                   <div className="relative h-56 bg-gray-200 overflow-hidden">
                   <img
                     src={course.image}
                     alt={course.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';
                       target.nextElementSibling?.classList.remove('hidden');
                     }}
                   />
-                  <div className="hidden absolute inset-0 bg-indigo-600 flex items-center justify-center">
+                  <div className="hidden absolute inset-0 bg-purple-700 flex items-center justify-center">
                     <BookOpen className="w-16 h-16 text-white opacity-50" />
                   </div>
                   
                   {/* Overlay Badges */}
                   <div className="absolute top-4 left-4 right-4 flex justify-between">
-                    <Badge className={`${getCategoryColor(course.category)} border-0 shadow-lg`}>
+                    <Badge className={`${getCategoryColor(course.category)} border-0`}>
                       {course.category}
                     </Badge>
-                    <Badge className={`${getLevelColor(course.level)} border-0 shadow-lg`}>
+                    <Badge className={`${getLevelColor(course.level)} border-0`}>
                       {course.level}
                     </Badge>
                   </div>
                   
                   {/* Price Tag */}
-                  <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl px-3 py-2 shadow-lg">
+                  <div className="absolute bottom-4 right-4 bg-white/95 rounded-lg px-3 py-2 shadow">
                     <div className="text-lg font-bold text-gray-900">
                       {formatCurrency(course.price, course.currency)}
                     </div>
+                    <div className="text-[11px] leading-tight text-gray-600 text-right">Once-off payment</div>
                   </div>
                 </div>
               )}
               
               <CardHeader className="pb-4">
-                <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors duration-300 line-clamp-2 leading-tight">
+                <CardTitle className="text-xl font-bold text-gray-900 line-clamp-2 leading-tight">
                   {course.name}
                 </CardTitle>
                 <CardDescription className="text-gray-600 line-clamp-3 leading-relaxed">
@@ -319,8 +317,8 @@ const Courses = () => {
                 {/* Course Details */}
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="flex items-center gap-2 text-gray-600">
-                    <div className="p-2 bg-indigo-50 rounded-lg">
-                      <Clock className="w-4 h-4 text-indigo-600" />
+                    <div className="p-2 bg-purple-50 rounded-lg">
+                      <Clock className="w-4 h-4 text-purple-600" />
                     </div>
                     <span>{course.duration}</span>
                   </div>
@@ -332,10 +330,13 @@ const Courses = () => {
                   </div>
                 </div>
 
+                {/* Payment Type */}
+                <div className="text-xs font-medium text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-md px-2 py-1 inline-block">Once-off payment</div>
+
                 {/* Enroll Button */}
                 <Button
                   onClick={() => handleEnroll(course)}
-                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  className="w-full bg-purple-700 hover:bg-purple-800 text-white font-semibold py-3 rounded-lg"
                 >
                   <BookOpen className="w-5 h-5 mr-2" />
                   Enroll Now

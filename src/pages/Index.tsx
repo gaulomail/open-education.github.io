@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Star, Users, Award, ArrowRight, Globe, Shield, Zap, Target, Eye, Heart, Users2, CheckCircle, Clock, BookOpen, LifeBuoy, Sparkles, TrendingUp, Rocket, Lightbulb, ArrowUpRight, Play, CreditCard, Mail, Phone, User } from 'lucide-react';
+import { Star, Users, Award, ArrowRight, Globe, Shield, Zap, Target, Eye, Heart, Users2, CheckCircle, Clock, BookOpen, LifeBuoy, TrendingUp, Rocket, Lightbulb, ArrowUpRight, Play, CreditCard, Mail, Phone, User, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -225,7 +225,7 @@ const Index = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900">
+      <section className="relative overflow-hidden bg-purple-900">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img 
@@ -238,23 +238,20 @@ const Index = () => {
             }}
           />
           {/* Fallback pattern if image doesn't load */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-purple-900/40 to-indigo-900/40"></div>
+          <div className="absolute inset-0 bg-purple-900/60"></div>
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
           <div className="text-center">
             {/* Premium Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-white/20">
-              <Sparkles className="w-5 h-5 text-yellow-400" />
+            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-6 py-3 mb-8 border border-white/20">
               <span className="text-sm font-semibold text-white/90">Premium AI Learning Platform</span>
             </div>
             
             {/* Main Heading */}
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
               Master the Future of
-              <span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-                Artificial Intelligence
-              </span>
+              <span className="block text-white">Artificial Intelligence</span>
             </h1>
             
             {/* Subtitle */}
@@ -265,13 +262,13 @@ const Index = () => {
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-4 rounded-2xl text-lg shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:-translate-y-1">
+              <Button asChild size="lg" className="bg-purple-700 hover:bg-purple-800 text-white font-semibold px-8 py-4 rounded-lg text-lg border border-white/20">
                 <Link to="/courses">
                   <Rocket className="w-5 h-5 mr-2" />
                   Explore Courses
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" className="bg-purple-800 border-purple-600 text-white hover:bg-purple-700 font-semibold px-8 py-4 rounded-2xl text-lg">
+              <Button variant="outline" size="lg" className="bg-white/10 border-white/40 text-white hover:bg-white/20 font-semibold px-8 py-4 rounded-lg text-lg">
                 <Play className="w-5 h-5 mr-2" />
                 Watch Demo
               </Button>
@@ -281,12 +278,12 @@ const Index = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center group">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 group-hover:bg-white/20 transition-all duration-300">
-                    <div className={`w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                      <div className={stat.color}>{stat.icon}</div>
+                  <div className="bg-white/10 rounded-xl p-6 border border-white/20">
+                    <div className={`w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4`}>
+                      <div className="text-white">{stat.icon}</div>
                     </div>
                     <div className="text-3xl font-bold text-white mb-2">{stat.number}</div>
-                    <div className="text-sm text-purple-200">{stat.label}</div>
+                    <div className="text-sm text-blue-100">{stat.label}</div>
                   </div>
                 </div>
               ))}
@@ -295,30 +292,124 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-24 bg-gradient-to-b from-white to-purple-50">
+      {/* Features Section - Why Choose Our Platform */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Why Choose Our Platform?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We combine cutting-edge technology with proven learning methodologies to deliver exceptional results
-            </p>
+          {/* Heading */}
+          <div className="mb-14 text-center">
+            <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-900 px-3 py-1 rounded-full text-xs font-semibold border border-purple-200 mb-4">Why choose us</div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Why Choose Our Platform?</h2>
+            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">We combine cutting-edge technology with proven learning methodologies to deliver exceptional results.</p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          {/* Feature Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="group">
-                <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                  <div className={`w-20 h-20 bg-gradient-to-br ${feature.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <div className="text-white">{feature.icon}</div>
+              <div key={index} className="group relative h-full">
+                {/* Animated background overlay */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-50 to-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative h-full bg-white rounded-2xl p-7 md:p-8 border border-gray-200 shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:-translate-y-1">
+                  <div className="flex items-start gap-4">
+                    {/* Replaced icons with a clean numbered badge */}
+                    <div className="shrink-0 h-10 w-10 rounded-full bg-purple-100 text-purple-800 flex items-center justify-center text-sm font-bold border border-purple-200">
+                      {(index + 1).toString().padStart(2, '0')}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 leading-snug">{feature.title}</h3>
+                      <p className="mt-2 text-gray-600 leading-relaxed">{feature.description}</p>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+
+                  {/* Mini points */}
+                  <ul className="mt-6 space-y-3">
+                    <li className="flex items-start gap-3">
+                      <span className="mt-2 h-2 w-2 rounded-full bg-purple-600"></span>
+                      <span className="text-sm text-gray-700">Real-world projects guided by industry experts</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="mt-2 h-2 w-2 rounded-full bg-purple-600"></span>
+                      <span className="text-sm text-gray-700">Clear learning paths with measurable outcomes</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="mt-2 h-2 w-2 rounded-full bg-purple-600"></span>
+                      <span className="text-sm text-gray-700">Built for speed, accessibility, and global scale</span>
+                    </li>
+                  </ul>
+
+                  {/* Subtle footer */}
+                  <div className="mt-6 pt-6 border-t border-gray-100 flex items-center gap-2 text-sm text-gray-600">
+                    <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                    Verified learner outcomes
+                  </div>
                 </div>
               </div>
             ))}
+          </div>
+
+          
+        </div>
+      </section>
+
+
+      {/* Android App Section */}
+      <section className="py-20 bg-purple-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-white/10 text-white px-3 py-1 rounded-full text-xs font-semibold border border-white/20 mb-3">Mobile App</div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Learn Anywhere with our Android App</h2>
+              <p className="text-lg text-blue-100 mb-6">Access your programmes on the go: enroll, track progress, download resources, and receive updates – all optimized for mobile. The app is fast, secure, and built for low-data environments.</p>
+              <ul className="space-y-3 text-blue-100 mb-8">
+                <li className="flex items-start gap-3"><span className="mt-2 h-2 w-2 rounded-full bg-white"></span><span>Offline-friendly content and progress sync</span></li>
+                <li className="flex items-start gap-3"><span className="mt-2 h-2 w-2 rounded-full bg-white"></span><span>Push notifications for deadlines and announcements</span></li>
+                <li className="flex items-start gap-3"><span className="mt-2 h-2 w-2 rounded-full bg-white"></span><span>Secure payments and simplified enrollment</span></li>
+              </ul>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button asChild size="lg" className="bg-white text-purple-900 hover:bg-purple-50 font-semibold px-6 py-3 rounded-lg">
+                  <a href="https://play.google.com/store/apps/details?id=com.openeducationai" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 mr-2" aria-hidden="true" fill="currentColor">
+                      <path d="M325.3 234.3 93.7 2.7C87.3-3.7 77 0 77 9v494c0 9 10.3 12.7 16.7 6.3l231.6-231.6c7.8-7.8 7.8-20.5 0-28.3z"/>
+                      <path d="m410.1 148.6-60.9 60.9c-5.7 5.7-5.7 14.9 0 20.6l78.7 78.7c5.7 5.7 14.9 5.7 20.6 0l60.9-60.9c16.8-16.8 16.8-44.1 0-60.9l-38.4-38.4c-16.8-16.8-44.1-16.8-60.9 0z"/>
+                    </svg>
+                    Get it on Play Store
+                  </a>
+                </Button>
+                <Button asChild size="lg" className="bg-purple-700 text-white hover:bg-purple-800 font-semibold px-6 py-3 rounded-lg">
+                  <a href="/demo-app.apk" download>
+                    <Download className="w-5 h-5 mr-2" />
+                    Download Demo APK
+                  </a>
+                </Button>
+              </div>
+              <p className="text-xs text-blue-100/90 mt-3">By installing the APK, you may need to allow installs from your browser in Android settings.</p>
+            </div>
+            <div className="relative flex justify-center">
+              <div className="relative w-[240px] md:w-[260px]">
+                {/* Device frame */}
+                <div className="relative rounded-[34px] bg-black/80 border border-white/20 shadow-2xl p-3">
+                  {/* Side buttons */}
+                  <div className="hidden md:block absolute -left-1 top-16 h-8 w-0.5 bg-white/50 rounded"></div>
+                  <div className="hidden md:block absolute -left-1 top-28 h-6 w-0.5 bg-white/50 rounded"></div>
+                  <div className="hidden md:block absolute -right-1 top-20 h-10 w-0.5 bg-white/50 rounded"></div>
+
+                  {/* Bezel */}
+                  <div className="relative rounded-[26px] bg-black overflow-hidden">
+                    {/* Notch / camera */}
+                    <div className="absolute top-0 inset-x-0 flex justify-center pt-2 z-10">
+                      <div className="h-5 w-28 bg-black rounded-b-2xl shadow-inner"></div>
+                    </div>
+
+                    {/* Screen */}
+                    <div className="relative rounded-[22px] overflow-hidden aspect-[9/19.5]">
+                      <img src="/lovable-uploads/Screenshot%202025-11-04%20at%2013.32.57.png" alt="Android app preview" className="h-full w-full object-cover" />
+                    </div>
+
+                    {/* Home indicator */}
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 h-1.5 w-16 rounded-full bg-white/70"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -338,38 +429,43 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {programmesData.map((programme, index) => (
               <div key={index} className="group">
-                <div className="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <div className="relative bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:-translate-y-1">
                   {/* Course Image */}
                   <div className="relative h-48 overflow-hidden">
                     <img 
                       src={programme.imageUrl} 
                       alt={programme.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                     <div className="absolute top-4 left-4">
-                      <span className="bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                      <span className="bg-white/90 text-gray-900 backdrop-blur-sm text-xs font-semibold px-3 py-1 rounded-full border border-white">
                         {programme.category}
                       </span>
                     </div>
                     <div className="absolute top-4 right-4">
-                      <span className="bg-white/90 backdrop-blur-sm text-gray-900 text-xs font-semibold px-3 py-1 rounded-full">
+                      <span className="bg-white/90 backdrop-blur-sm text-gray-900 text-xs font-semibold px-3 py-1 rounded-full border border-white">
                         {programme.level}
                       </span>
                     </div>
                   </div>
                   
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-700 transition-colors">
                       {programme.title}
                     </h3>
                     
                     <div className="flex items-center gap-4 mb-4 text-sm text-gray-600">
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
+                      <div className="flex items-center gap-2">
+                        <div className="p-1.5 rounded-md bg-purple-50">
+                          <Clock className="w-4 h-4 text-purple-700" />
+                        </div>
                         {programme.duration}
                       </div>
-                      <div className="flex items-center gap-1">
-                        <Users className="w-4 h-4" />
+                      <div className="flex items-center gap-2">
+                        <div className="p-1.5 rounded-md bg-gray-50">
+                          <Users className="w-4 h-4 text-gray-700" />
+                        </div>
                         {programme.students}
                       </div>
                     </div>
@@ -379,12 +475,12 @@ const Index = () => {
                         <Star className="w-5 h-5 text-yellow-500 fill-current" />
                         <span className="font-semibold text-gray-900">{programme.rating}</span>
                       </div>
-                      <div className="text-2xl font-bold text-purple-600">{programme.price}</div>
+                      <div className="text-2xl font-bold text-gray-900">{programme.price}</div>
                     </div>
                     
-                                         <Button 
+                    <Button 
                        onClick={() => handleEnroll(programme)}
-                       className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-xl transition-all duration-300"
+                       className="w-full bg-purple-700 hover:bg-purple-800 text-white font-semibold py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow"
                      >
                        <CreditCard className="w-4 h-4 mr-2" />
                        Enroll Now
@@ -396,8 +492,8 @@ const Index = () => {
             ))}
           </div>
           
-                     <div className="text-center">
-             <Button asChild variant="outline" size="lg" className="border-purple-600 text-purple-600 hover:bg-purple-50 font-semibold px-8 py-4 rounded-2xl text-lg">
+           <div className="text-center">
+             <Button asChild variant="outline" size="lg" className="border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold px-8 py-4 rounded-lg text-lg">
                <Link to="/courses">
                  View All Courses
                  <ArrowUpRight className="w-5 h-5 ml-2" />
@@ -408,13 +504,13 @@ const Index = () => {
       </section>
 
       {/* Core Values Section */}
-      <section className="py-24 bg-gradient-to-b from-purple-50 to-white">
+      <section className="py-24 bg-purple-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Our Core Values
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
               The principles that guide everything we do and every decision we make
             </p>
           </div>
@@ -422,12 +518,12 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {coreValuesData.map((value, index) => (
               <div key={index} className="text-center group">
-                <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                  <div className={`w-20 h-20 bg-gray-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <div className={value.color}>{value.icon}</div>
+                <div className="rounded-xl p-8 border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:-translate-y-1">
+                  <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 bg-white/10 ring-1 ring-white/10`}>
+                    <div className="text-white">{value.icon}</div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{value.description}</p>
+                  <h3 className="text-xl font-bold text-white mb-3">{value.title}</h3>
+                  <p className="text-blue-100 text-sm leading-relaxed">{value.description}</p>
                 </div>
               </div>
             ))}
@@ -438,47 +534,36 @@ const Index = () => {
       {/* Company Goals Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Our Mission & Goals
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We're committed to transforming education and empowering the next generation of AI professionals
-            </p>
+          <div className="text-center mb-14">
+            <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-900 px-3 py-1 rounded-full text-xs font-semibold border border-purple-200 mb-4">Our mission</div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Our Mission & Goals</h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">We focus on measurable learner outcomes, equitable access, and durable skills that translate into career growth.</p>
           </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Left: Goals list */}
             <div>
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {companyGoalsData.map((goal, index) => (
-                  <div key={index} className="flex items-start gap-4">
-                                       <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                     <CheckCircle className="w-5 h-5 text-white" />
-                   </div>
-                    <p className="text-gray-700 leading-relaxed">{goal}</p>
+                  <div key={index} className="flex items-start gap-3">
+                    <span className="mt-2 inline-block h-2 w-2 rounded-full bg-purple-600"></span>
+                    <p className="text-gray-800 leading-relaxed">{goal}</p>
                   </div>
                 ))}
               </div>
+
               
-                             <div className="mt-8">
-                 <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-4 rounded-2xl text-lg">
-                   <Link to="/about">
-                     Learn More About Us
-                     <ArrowRight className="w-5 h-5 ml-2" />
-                   </Link>
-                 </Button>
-               </div>
             </div>
-            
-                         <div className="relative">
-               <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-12 text-center">
-                 <div className="w-24 h-24 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                   <Target className="w-12 h-12 text-white" />
-                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  To become the world's leading platform for AI education, empowering millions of learners 
-                  to master artificial intelligence and shape the future of technology.
+
+            {/* Right: Vision card */}
+            <div className="relative">
+              <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+                <div className="w-16 h-16 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center mx-auto mb-5">
+                  <Target className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3 text-center">Our Vision</h3>
+                <p className="text-gray-700 leading-relaxed text-center">
+                  To become the world's leading platform for AI education—empowering learners to master practical AI skills and create real-world impact.
                 </p>
               </div>
             </div>
@@ -487,7 +572,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900">
+      <section className="py-24 bg-purple-900">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Ready to Transform Your Career?
@@ -498,13 +583,13 @@ const Index = () => {
           </p>
           
                      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-             <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-4 rounded-2xl text-lg shadow-2xl hover:shadow-purple-500/25 transition-all duration-300">
+            <Button asChild size="lg" className="bg-white text-purple-900 hover:bg-purple-50 font-semibold px-8 py-4 rounded-lg text-lg">
                <Link to="/courses">
                  <Rocket className="w-4 h-5 mr-2" />
                  Get Started Today
                </Link>
              </Button>
-                          <Button variant="outline" size="lg" className="bg-white/10 border-white/50 text-white hover:bg-white/20 hover:border-white/70 font-semibold px-8 py-4 rounded-2xl text-lg backdrop-blur-sm shadow-lg">
+            <Button variant="outline" size="lg" className="bg-white/10 border-white/40 text-white hover:bg-white/20 font-semibold px-8 py-4 rounded-lg text-lg">
                 <Lightbulb className="w-5 h-5 mr-2" />
                 Learn More
               </Button>

@@ -282,13 +282,23 @@ export class PayFastService {
 }
 
 // Default configuration with hardcoded values
+const getOrigin = () => {
+  if (typeof window !== 'undefined' && window.location && window.location.origin) {
+    return window.location.origin;
+  }
+  // Fallback to relative root if origin is not available
+  return '';
+};
+
+const ORIGIN = getOrigin();
+
 export const defaultPayFastConfig: PayFastConfig = {
   merchantId: '10037497',
   merchantKey: '4crsjy8t5t3sb',
   testMode: true, // Set to false for production
-  returnUrl: 'http://localhost:8082/payment/success',
-  cancelUrl: 'http://localhost:8082/payment/cancelled',
-  notifyUrl: 'http://localhost:8082/api/payfast/notify',
+  returnUrl: `${ORIGIN}/payment/success`,
+  cancelUrl: `${ORIGIN}/payment/cancelled`,
+  notifyUrl: `${ORIGIN}/api/payfast/notify`,
 };
 
 export const payfastService = new PayFastService(defaultPayFastConfig);

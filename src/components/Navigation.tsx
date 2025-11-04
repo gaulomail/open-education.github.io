@@ -32,17 +32,18 @@ const Navigation = () => {
             <div className="hidden md:flex md:items-center md:space-x-8">
               <Link to="/" className="nav-link">Home</Link>
               <Link to="/courses" className="nav-link">Courses</Link>
-              <Link to="/programmes" className="nav-link">Programmes</Link>
               <Link to="/qualifications" className="nav-link">Qualifications</Link>
               <Link to="/masterclasses" className="nav-link">Masterclasses</Link>
               <Link to="/corporate-training" className="nav-link">Corporate Training</Link>
               <Link to="/contact" className="nav-link">Contact</Link>
-              <Link 
-                to="/getting-started" 
-                className="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors font-medium"
+              <a 
+                href="http://openedai.org/moodle/login/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-full bg-purple-700 hover:bg-purple-800 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
               >
-                Get Started
-              </Link>
+                Student Portal
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -82,13 +83,7 @@ const Navigation = () => {
             >
               Courses
             </Link>
-            <Link 
-              to="/programmes" 
-              className="mobile-nav-link"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Programmes
-            </Link>
+            
             <Link 
               to="/qualifications" 
               className="mobile-nav-link"
@@ -117,13 +112,15 @@ const Navigation = () => {
             >
               Contact
             </Link>
-            <Link 
-              to="/getting-started" 
-              className="block px-3 py-2 text-purple-600 hover:text-purple-700 font-medium"
+            <a 
+              href="http://openedai.org/moodle/login/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block px-4 py-2 rounded-full bg-purple-700 hover:bg-purple-800 text-white text-center font-semibold shadow-md hover:shadow-lg transition-all duration-200"
               onClick={() => setIsMenuOpen(false)}
             >
-              Get Started
-            </Link>
+              Student Portal
+            </a>
           </div>
         </div>
       </nav>

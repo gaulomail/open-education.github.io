@@ -16,13 +16,13 @@ const NotFound = () => {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 pt-20">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 pt-20">
         {/* pt-20 to account for fixed Navigation bar height */}
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center p-4">
             <h1 className="text-4xl font-bold mb-4 text-gray-800">404</h1>
             <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-            <a href="/" className="text-blue-500 hover:text-blue-700 underline">
+            <a href="/" className="text-purple-700 hover:text-purple-800 underline">
               Return to Home
             </a>
           </div>
